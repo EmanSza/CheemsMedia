@@ -22,11 +22,14 @@ client.on('ready', () => {
 
 // Async Fucktion 
 (async () => {
+    client.blacklistCache = new Set()
     await client.login(TOKEN);
     console.log(chalk.red(`<${client.user.tag}>`) + (' ') + chalk.blue('Starting up...'))
     client.commands = new Discord.Collection();
     await registerEvents(client, '../eventHandlers');
     await registerCommands(client, '../commands');
+    //Schemas
+    client.DBConfig = require('../config/schema/config')
     await mongoose.connect(MONGOURI, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
@@ -35,6 +38,9 @@ client.on('ready', () => {
 
     client.DBUser = require('../config/schema/user.js');
     client.DBPost = require('../config/schema/posts.js');
+    //Blacklist
+    const blacklistFetch = await client.DBConfig.findByIdAndUpdate('blacklist', {}, {new: true, upsert: true, setDefaultsOnInsert: true})
+    client.blacklistCache = new Set(blacklistFetch.blacklisted)
 })();
 
 Array.prototype.random = function () {

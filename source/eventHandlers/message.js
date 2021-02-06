@@ -4,7 +4,7 @@ const cooldowns = new Collection();
 const { PREFIX} = require('../../config/botconfig.json')
 
 module.exports = async (client, message) => {
-    if (message.author.bot || message.channel.type === 'dm') return;
+    if (message.author.bot || message.channel.type === 'dm' || client.blacklistCache.has(message.author.id)) return;
 
     if (!message.content.startsWith(PREFIX)) return;
 
