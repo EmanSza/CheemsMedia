@@ -1,4 +1,5 @@
 const Discord = require("discord.js");
+const chalk = require('chalk');
 const { PREFIX, BOTADMINS} = require('../../../config/botconfig.json');
 const { blacklist, whitelist } = require('../../utils/utils')
 
@@ -21,8 +22,9 @@ module.exports = {
 
          try {
         whitelist(client, message.mentions.users.first().id)
+        console.log(chalk.red(`<${client.user.tag}>`) + (' ') + chalk.blue(`Whitelisted ${user}`))
          } catch(err) {
-            console.log(chalk.red(`<${client.user.tag}>`) + (' ') + chalk.blue(` Whitelisted ${user}`))
+            console.log(err)
          }
     }
 }

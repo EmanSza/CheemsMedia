@@ -21,6 +21,11 @@ module.exports = {
          const user = message.mentions.users.first()
          if(!user) return message.reply('You didn\'t mention anyone!');
 
+         try{
         blacklist(client, message.mentions.users.first().id)
+        console.log(chalk.red(`<${client.user.tag}>`) + (' ') + chalk.blue(`Blacklisted ${user}`))
+         } catch(err) {
+             console.log(err)
+         }
     }
 }
