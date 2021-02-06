@@ -1,21 +1,21 @@
 {
   "name": "loners",
   "version": "1.0.0",
-  "description": "EmanSza | Spike",
+  "description": "EmanSza | Spike | Canta",
   "main": "./source/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/WornOffKeys/Loners.git"
+    "url": "https://github.com/WornOffKeys/Cheems-Media"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/WornOffKeys/Loners/issues"
+    "url": "https://github.com/WornOffKeys/Cheems-Mediaissues"
   },
-  "homepage": "https://github.com/WornOffKeys/Loners#readme",
+  "homepage": "https://github.com/WornOffKeys/Cheems-Media#readme",
   "dependencies": {
     "chalk": "^4.1.0",
     "discord.js": "^12.5.1",
