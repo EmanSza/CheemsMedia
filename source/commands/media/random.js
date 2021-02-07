@@ -30,10 +30,12 @@ module.exports = {
         if (reply.content.toLowerCase() === '!up') {
             await client.DBPost.findByIdAndUpdate(post._id, { $inc: { upvotes: 1 } }, { new: true, upsert: true });
             await client.DBUser.findByIdAndUpdate(post.author, { $inc: { cheems: 1 } }, { new: true, upsert: true });
+            message.reply('Cheems Given! 😊')
         }
         else if (reply.content.toLowerCase() === '!down') {
             await client.DBPost.findByIdAndUpdate(post._id, { $inc: { downvotes: 1 } }, { new: true, upsert: true });
             await client.DBUser.findByIdAndUpdate(post.author, { $inc: { cheems: -1 } }, { new: true, upsert: true });
+            message.reply('Cheems Taken! 😢')
         }
     }
 }

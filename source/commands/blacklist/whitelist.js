@@ -22,7 +22,7 @@ module.exports = {
 
          try {
         whitelist(client, message.mentions.users.first().id)
-        console.log(chalk.red(`<${client.user.tag}>`) + (' ') + chalk.blue(`Whitelisted ${user}`))
+        console.log(chalk.red(`<${client.user.tag}>`) + (' ') + chalk.blue(`Whitelisted ${user.tag}`))
          } catch(err) {
             console.log(err)
          }

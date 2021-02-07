@@ -23,7 +23,7 @@ module.exports = {
 
          try{
         blacklist(client, message.mentions.users.first().id)
-        console.log(chalk.red(`<${client.user.tag}>`) + (' ') + chalk.blue(`Blacklisted ${user}`))
+        console.log(chalk.red(`<${client.user.tag}>`) + (' ') + chalk.blue(`Blacklisted ${user.tag}`))
          } catch(err) {
              console.log(err)
          }
