@@ -27,14 +27,14 @@ module.exports = {
 
             let MIEmbed = new MessageEmbed()
             .setURL("https://discord.gg/jRnTbRPjdr")
-            .setColor(EMBED_COLOR)
+            .setColor('RANDOM')
             .setTitle("Commands")
             .addFields(
                 {name: "**Misc**", value:"``ping`` See how fast the bot is\n ``up`` give cheems to a image\n ``down`` take a cheem away from the image", inline: true},
                 {name: "**Media**", value:"``post`` post a image\n ``profile`` see your profile statistics\n ``random`` get a random image\n", inline: true},
              )
              PEmbed = new MessageEmbed()
-                .setColor(EMBED_COLOR)
+                .setColor('RANDOM')
                 .setTitle("Premium Commands")
 
 

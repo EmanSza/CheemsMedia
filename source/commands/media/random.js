@@ -8,7 +8,9 @@ module.exports = {
     description: "Get a random post",
     usage: `\`${PREFIX}random\``,
 
-    execute: async function(client, message, args) {
+    execute: async function (client, message, args) {
+        let DBUser = await client.DBUser.findById(message.author.id);
+
         let posts = await client.DBPost.find({});
         let post = posts.random()
 
@@ -16,10 +18,10 @@ module.exports = {
         const user = await client.users.fetch(post.author);
 
         const embed = new MessageEmbed()
-        .setColor('RANDOM')
-        .setTitle(post.title)
-        .setDescription(post.description)
-        .setFooter(user.tag, user.displayAvatarURL({ dynamic: true }));
+            .setColor('RANDOM')
+            .setTitle(post.title)
+            .setDescription(post.description)
+            .setFooter(user.tag, user.displayAvatarURL({ dynamic: true }));
 
         if (post.image !== 'None') embed.setImage(post.image);
 
@@ -28,11 +30,13 @@ module.exports = {
         let reply = await getReply(message, { time: 30000 })
         if (!reply) return;
         if (reply.content.toLowerCase() === '!up') {
+            if (!DBUser) return message.reply('In order to cheems you must signup!');
             await client.DBPost.findByIdAndUpdate(post._id, { $inc: { upvotes: 1 } }, { new: true, upsert: true });
             await client.DBUser.findByIdAndUpdate(post.author, { $inc: { cheems: 1 } }, { new: true, upsert: true });
             message.reply('Cheems Given! 😊')
         }
         else if (reply.content.toLowerCase() === '!down') {
+            if (!DBUser) return message.reply('In order to cheems you must signup');
             await client.DBPost.findByIdAndUpdate(post._id, { $inc: { downvotes: 1 } }, { new: true, upsert: true });
             await client.DBUser.findByIdAndUpdate(post.author, { $inc: { cheems: -1 } }, { new: true, upsert: true });
             message.reply('Cheems Taken! 😢')

@@ -8,7 +8,10 @@ module.exports = {
     usage: `\`${PREFIX}post\``,
     cooldown: 0,
 
-    execute: async function(client, message, args) {
+    execute: async function (client, message, args) {
+        let DBUser = await client.DBUser.findById(message.author.id);
+        if (!DBUser) return message.reply('You must signup using the signup command!');
+
         message.channel.send(`${message.author.tag}, what should be the title of the post?`);
 
         let title = await getReply(message, { time: 60000 });
@@ -32,7 +35,11 @@ module.exports = {
 
         await client.DBUser.findByIdAndUpdate(message.author.id, { $push: { posts: post._id } }, { new: true, upsert: true });
         await client.DBPost.findByIdAndUpdate(message.id, { $set: post }, { new: true, upsert: true })
-
+        try {
         message.reply(` Good job Cheems!! your post has been uploaded! `)
+        } catch(err) {
+            console.log(err)
+            message.reply(`Error!\nPlease Contact an Admin about this`)
+        }
     }
 }
