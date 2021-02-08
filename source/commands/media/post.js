@@ -33,6 +33,6 @@ module.exports = {
         await client.DBUser.findByIdAndUpdate(message.author.id, { $push: { posts: post._id } }, { new: true, upsert: true });
         await client.DBPost.findByIdAndUpdate(message.id, { $set: post }, { new: true, upsert: true })
 
-        message.channel.send(`${message.author.tag}, Good job Cheems!! your post has been uploaded! `)
+        message.reply(`, Good job Cheems!! your post has been uploaded! `)
     }
 }

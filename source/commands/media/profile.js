@@ -13,14 +13,16 @@ module.exports = {
 
     execute: async function(client, message, args) {
 
-        let user = client.users.cache.get(args[0]) || message.mentions.users.first()
-        if(!user) user = message.author.id
+      let user = client.users.cache.get(args[0]);
+        if(user) user = user.id
+        if(!user) user = message.author.id 
       //  if (user.id === message.author.id) return
 
-        let DBUser = await client.DBUser.findById(user);
+        let DBUser = await client.DBUser.findById(message.author.id);
     if (!DBUser) {
-        const fetch = await client.DBUser.findById(user, { new: true, upsert: true });
+        const fetch = await client.DBUser.findById(message.author.id);
         // When testing when making the 1st argument into a ID got a id of null pushing into dev branch
+        DBUser = {}
         DBUser['_id'] = fetch._id
         DBUser['cheems'] = fetch.cheems
         DBUser['posts'] = fetch.posts.length
