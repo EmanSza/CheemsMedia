@@ -11,7 +11,10 @@ const userSchema = Schema({
         type: Number,
         default: 0,
     },
-    follows: [String]
+    follows: {
+        type: [String],
+        default: []
+    }
 });
 
 module.exports = model('users', userSchema);
