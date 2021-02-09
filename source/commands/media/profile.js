@@ -12,16 +12,16 @@ module.exports = {
   cooldown: 0,
 
   execute: async function (client, message, args) {
-    let DBUser = await client.DBUser.findById(message.author.id);
+    let user = client.users.cache.get(args[0]) || message.mentions.users.first();
+    if (!user) user = message.author
+
+    let DBUser = await client.DBUser.findById(user.id);
     if (!DBUser) return message.reply('You must signup using the signup command!')
 
-    let user = client.users.cache.get(args[0]);
-    if (user) user = user.id
-    if (!user) user = message.author.id
     //  if (user.id === message.author.id) return
 
     if (!DBUser) {
-      const fetch = await client.DBUser.findById(message.author.id);
+      const fetch = await client.DBUser.findById(user.id);
       // When testing when making the 1st argument into a ID got a id of null pushing into dev branch
       DBUser = {}
       DBUser['_id'] = fetch._id
@@ -39,15 +39,15 @@ module.exports = {
 
 
     const profile = new MessageEmbed()
-      .setTitle(message.author.tag)
+      .setTitle(user.tag)
       .addFields(
         { name: "Total Posts:", value: postlength || 'None', inline: false },
         { name: "Total Cheems", value: cheems || '0', inline: true },
         { name: "Total Follows", value: Totalfollows || '0', inline: false },
         { name: "Total Followers", value: followers || 'None', inline: false },
-       // { name: "Following", value: follows || 'None', inline: false },
+        // { name: "Following", value: follows || 'None', inline: false },
       )
-      .setThumbnail(message.author.displayAvatarURL())
+      .setThumbnail(user.displayAvatarURL())
     try {
       message.channel.send(profile)
     } catch (err) {
