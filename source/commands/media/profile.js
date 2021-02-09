@@ -4,7 +4,7 @@ const { MessageEmbed } = require('discord.js')
 
 module.exports = {
   name: "profile",
-  aliases: [],
+  aliases: ["profil"],
   description: "",
   usage: `\`See your profile\``,
   examples: `\`${PREFIX}profile\``,
