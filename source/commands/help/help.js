@@ -37,7 +37,7 @@ module.exports = {
                 .setColor('RANDOM')
                 .setTitle("Premium Commands")
 
-
+                    try {
             message.channel.send(AwEmbed).then
             setTimeout(function () {
                 message.author.send(hEmbed)
@@ -45,6 +45,14 @@ module.exports = {
             setTimeout(function () {
                 message.author.send(MIEmbed)
             }, 1000 * 2)
+        } catch(err) {
+            setTimeout(function () {
+                message.channel.send(hEmbed)
+            }, 1000* 1).then 
+            setTimeout(function () {
+                message.channel.send(MIEmbed)
+            }, 1000 * 2 )
+        }
         }
         else {
             const cmdname = args[0].toLowerCase();
