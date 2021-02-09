@@ -31,6 +31,7 @@ module.exports = {
       DBUser['follows'] = fetch.follows
     }
     const cheems = DBUser.cheems;
+    const post = DBUser.post
     const postlength = DBUser.posts.length
     const followers = DBUser.followers
     const follows = DBUser.follows
@@ -40,11 +41,11 @@ module.exports = {
     const profile = new MessageEmbed()
       .setTitle(message.author.tag)
       .addFields(
-        { name: "Total Posts:", value: postlength, inline: false },
-        { name: "Total Cheems", value: cheems, inline: true },
-        { name: "Total Follows", value: Totalfollows, inline: false },
-        { name: "Total Followers", value: followers, inline: false },
-        { name: "Following", value: follows || 'None', inline: false },
+        { name: "Total Posts:", value: postlength || 'None', inline: false },
+        { name: "Total Cheems", value: cheems || '0', inline: true },
+        { name: "Total Follows", value: Totalfollows || '0', inline: false },
+        { name: "Total Followers", value: followers || 'None', inline: false },
+       // { name: "Following", value: follows || 'None', inline: false },
       )
       .setThumbnail(message.author.displayAvatarURL())
     try {

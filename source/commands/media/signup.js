@@ -14,7 +14,7 @@ module.exports = {
         let DBUser = await client.DBUser.findByIdAndUpdate(message.author.id, {}, { new: true, upsert: true, setDefaultsOnInsert: true });
 
         if (!DBUser) {
-            const fetch = await client.DBUser.findById(message.author.id);
+            const fetch = await client.DBUser.findByIdAndUpdate(message.author.id);
             // When testing when making the 1st argument into a ID got a id of null pushing into dev branch
             DBUser = {}
             DBUser['_id'] = fetch._id
