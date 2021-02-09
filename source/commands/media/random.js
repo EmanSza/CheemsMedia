@@ -13,7 +13,7 @@ module.exports = {
 
         let posts = await client.DBPost.find({});
         let post = posts.random()
-
+        if(!post) return message.channel.send("There are no posts on this guild :thinking:")
         // return console.log(post)
         const user = await client.users.fetch(post.author);
 
