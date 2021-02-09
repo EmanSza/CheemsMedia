@@ -30,8 +30,8 @@ module.exports = {
                 .setColor('RANDOM')
                 .setTitle("Commands")
                 .addFields(
-                    { name: "**Misc**", value: "``ping`` See how fast the bot is\n ``up`` give cheems to a image\n ``down`` take a cheem away from the image", inline: true },
-                    { name: "**Media**", value: "``post`` post a image\n ``profile`` see your profile statistics\n ``random`` get a random image\n `` follow`` Follow someone\n ``unfollow`` unfollow someone\n", inline: true },
+                    { name: "**Misc**", value: "``ping``See how fast the bot is\n ``up``give cheems to a image\n``down``take a cheem away from the image", inline: true },
+                    { name: "**Media**", value: "``post``post a image\n``profile``see your profile statistics\n``random``get a random image\n``follow`` Follow someone\n``unfollow``unfollow someone\n", inline: true },
                 )
             PEmbed = new MessageEmbed()
                 .setColor('RANDOM')
