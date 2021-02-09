@@ -23,14 +23,15 @@ module.exports = {
 
         message.channel.send(`${message.author.tag}, do you want to add an image?`);
         let image = await getReply(message, { time: 60000, type: 'image' });
-        if (!image) image = 'None';
-
+        if(image.attachments.size > 0)  image = image.attachments.first().url
+        else if(!image.content.toLowerCase().includes('none' || 'https://'))return message.reply('You message does not include none or a image link!') 
+        
         let post = {
             _id: message.id,
             author: message.author.id,
             title: title.content,
             description: description.content,
-            image: image.content
+            image: image.content || image
         }
 
         await client.DBUser.findByIdAndUpdate(message.author.id, { $push: { posts: post._id } }, { new: true, upsert: true });
