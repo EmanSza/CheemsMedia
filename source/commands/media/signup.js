@@ -1,4 +1,5 @@
 const PREFIX = require('../../../config/botconfig.json').PREFIX;
+const moment = require('moment')
 // Change DIR if needed
 
 module.exports = {
@@ -11,20 +12,13 @@ module.exports = {
     cooldown: 0,
 
     execute: async function (client, message, args) {
-        let DBUser = await client.DBUser.findByIdAndUpdate(message.author.id, {}, { new: true, upsert: true, setDefaultsOnInsert: true });
-
-        if (!DBUser) {
-            const fetch = await client.DBUser.findByIdAndUpdate(message.author.id);
-            // When testing when making the 1st argument into a ID got a id of null pushing into dev branch
-            DBUser = {}
-            DBUser['_id'] = fetch._id
-            DBUser['cheems'] = fetch.cheems
-            DBUser['posts'] = fetch.posts.length
-            DBUser['followers'] = fetch.followers
-            DBUser['follows'] = fetch.follows
-        }
+        let DBUser = await client.DBUser.findById(message.author.id)
+        //if(DBUser) return message.reply('You are already in the database!')
+        if(!DBUser) user = await client.DBUser.findByIdAndUpdate(message.author.id, {}, { new: true, upsert: true, setDefaultsOnInsert: true });
+        let JoinDate = moment().toDate();
         try {
             message.reply('You have been Signed up! make sure to read our TOS!')
+            await client.DBUser.findByIdAndUpdate(message.author.id, { $set: { joindate: JoinDate} }, { new: true, upsert: true });
         } catch (err) {
             console.log(err)
             message.reply(`Error!\nPlease Contact an Admin about this`)

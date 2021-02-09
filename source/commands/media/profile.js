@@ -29,6 +29,7 @@ module.exports = {
       DBUser['posts'] = fetch.posts.length
       DBUser['followers'] = fetch.followers
       DBUser['follows'] = fetch.follows
+      DBUser['joindate'] = fetch.joindate
     }
     const cheems = DBUser.cheems;
     const post = DBUser.post
@@ -36,6 +37,7 @@ module.exports = {
     const followers = DBUser.followers
     const follows = DBUser.follows
     const Totalfollows = DBUser.follows.length
+    const JoinDate = DBUser.joindate
 
 
     const profile = new MessageEmbed()
@@ -45,6 +47,7 @@ module.exports = {
         { name: "Total Cheems", value: cheems || '0', inline: true },
         { name: "Total Follows", value: Totalfollows || '0', inline: false },
         { name: "Total Followers", value: followers || 'None', inline: false },
+        { name: "Join Date", value: JoinDate || 'Never Joined', inline: false },
         // { name: "Following", value: follows || 'None', inline: false },
       )
       .setThumbnail(user.displayAvatarURL())

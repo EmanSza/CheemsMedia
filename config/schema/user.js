@@ -14,6 +14,9 @@ const userSchema = Schema({
     follows: {
         type: [String],
         default: []
+    },
+    joindate: {
+        type: String
     }
 });
 

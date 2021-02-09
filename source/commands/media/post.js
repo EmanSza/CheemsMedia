@@ -42,5 +42,6 @@ module.exports = {
             console.log(err)
             message.reply(`Error!\nPlease Contact an Admin about this`)
         }
+        // This will DM a Follower if the User Posted a message!
     }
 }
