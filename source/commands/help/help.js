@@ -36,22 +36,12 @@ module.exports = {
             PEmbed = new MessageEmbed()
                 .setColor('RANDOM')
                 .setTitle("Premium Commands")
-
-                    try {
-            message.channel.send(AwEmbed).then
-            setTimeout(function () {
-                message.author.send(hEmbed)
-            }, 1000 * 1).then
-            setTimeout(function () {
-                message.author.send(MIEmbed)
-            }, 1000 * 2)
-        } catch(err) {
-            setTimeout(function () {
-                message.channel.send(hEmbed)
-            }, 1000* 1).then 
-            setTimeout(function () {
-                message.channel.send(MIEmbed)
-            }, 1000 * 2 )
+                try{
+                await message.author.send(hEmbed)
+                await message.author.send(MIEmbed)
+                await message.channel.send(AwEmbed)
+        } catch {
+            message.channel.send("Woops your DM's are closed")
         }
         }
         else {
