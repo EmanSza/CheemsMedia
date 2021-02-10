@@ -17,6 +17,10 @@ const userSchema = Schema({
     },
     joindate: {
         type: String
+    },
+    blocked: {
+        type: [String],
+        default: []
     }
 });
 

@@ -21,7 +21,7 @@ module.exports = {
             .setColor('RANDOM')
             .setTitle(post.title)
             .setDescription(post.description)
-            .setFooter(user.tag, user.displayAvatarURL({ dynamic: true }));
+            .setFooter(`${user.tag} | ${user.id}`, user.displayAvatarURL({ dynamic: true }));
 
         if (post.image !== 'none') embed.setImage(post.image);
 
