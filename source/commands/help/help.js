@@ -30,8 +30,8 @@ module.exports = {
                 .setColor('RANDOM')
                 .setTitle("Commands")
                 .addFields(
-                    { name: "**Misc**", value: "``ping``See how fast the bot is\n ``up``give cheems to a image\n``down``take a cheem away from the image", inline: true },
-                    { name: "**Media**", value: "``post``post a image\n``profile``see your profile statistics\n``random``get a random image\n``follow`` Follow someone\n``unfollow``unfollow someone\n", inline: true },
+                    { name: "**Misc**", value: "`ping` See how fast the bot is\n`up` give cheems to a image\n`down` take a cheem away from the image", inline: true },
+                    { name: "**Media**", value: "`post` post a image\n`profile` see your profile statistics\n`random` get a random image\n`follow` Follow someone\n`unfollow` unfollow someone\n", inline: true },
                 )
             PEmbed = new MessageEmbed()
                 .setColor('RANDOM')
@@ -41,7 +41,12 @@ module.exports = {
                 await message.author.send(MIEmbed)
                 await message.channel.send(AwEmbed)
         } catch {
+
+            message.channel.send(hEmbed)
+            message.channel.send(MIEmbed)
+
             message.channel.send("Woops your DM's are closed")
+
         }
         }
         else {
@@ -53,7 +58,7 @@ module.exports = {
             let hEmbed = new MessageEmbed()
                 .setTitle(`${command.name}`)
                 .setDescription(`${command.description}`)
-                .setColor(EMBED_COLOR)
+                .setColor("RANDOM")
                 .setTimestamp()
             if (command.usage) hEmbed.addField("Usage", `${command.usage}`)
             if (command.aliases && command.aliases.length !== 0) hEmbed.addField("Aliases", `${command.aliases.join(', ')}`)

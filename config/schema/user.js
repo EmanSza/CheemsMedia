@@ -4,14 +4,21 @@ const userSchema = Schema({
     _id: String,
     posts: [String],
     followers: {
-        type: Number,
-        default: 0,
+        type: [String],
+        default: [],
     },
     cheems: {
         type: Number,
         default: 0,
     },
     follows: {
+        type: [String],
+        default: []
+    },
+    joindate: {
+        type: String
+    },
+    blocked: {
         type: [String],
         default: []
     }

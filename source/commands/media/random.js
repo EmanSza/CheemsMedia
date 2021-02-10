@@ -13,7 +13,7 @@ module.exports = {
 
         let posts = await client.DBPost.find({});
         let post = posts.random()
-
+        if(!post) return message.channel.send("There are no posts on this guild :thinking:")
         // return console.log(post)
         const user = await client.users.fetch(post.author);
 
@@ -21,7 +21,7 @@ module.exports = {
             .setColor('RANDOM')
             .setTitle(post.title)
             .setDescription(post.description)
-            .setFooter(user.tag, user.displayAvatarURL({ dynamic: true }));
+            .setFooter(`${user.tag} | ${user.id}`, user.displayAvatarURL({ dynamic: true }));
 
         if (post.image !== 'none') embed.setImage(post.image);
 
