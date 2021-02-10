@@ -23,7 +23,9 @@ module.exports = {
         let following = {
             following: message.author.id
         }
-
+        const result = await client.DBUser.findById(message.author.id)
+        if(result.follows.includes(user.id)) return message.channel.send('You are already following this user')
+        
         await client.DBUser.findByIdAndUpdate(message.author.id, { $push: { follows: follow.follows } }, { new: true, upsert: true });
         await client.DBUser.findByIdAndUpdate(user.id, { $push: { followers: following.following }, new: true, upsert: true });
         try {
