@@ -25,7 +25,7 @@ module.exports = {
         message.channel.send(`${message.author.tag}, do you want to add an image?`);
         let image = await getReply(message, { time: 60000, type: 'image' });
         if(image.attachments.size > 0)  image = image.attachments.first().url
-        else if(!image.content.toLowerCase().includes('none')) return message.reply('You message does not include none or a image link!') 
+        else if(!image.content.toLowerCase().includes('none') && !image.content.toLowerCase().includes('https://')) return message.reply('You message does not include none or a image link!') 
         
         let post = {
             _id: message.id,
