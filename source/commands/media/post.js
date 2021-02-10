@@ -1,5 +1,6 @@
 const PREFIX = require('../../../config/botconfig.json').PREFIX;
 const { getReply } = require('../../utils/utils')
+const {MessageEmbed} = require('discord.js')
 // Change DIR if needed
 
 module.exports = {
@@ -24,7 +25,7 @@ module.exports = {
         message.channel.send(`${message.author.tag}, do you want to add an image?`);
         let image = await getReply(message, { time: 60000, type: 'image' });
         if(image.attachments.size > 0)  image = image.attachments.first().url
-        else if(!image.content.toLowerCase().includes('none' || 'https://'))return message.reply('You message does not include none or a image link!') 
+        else if(!image.content.toLowerCase().includes('none')) return message.reply('You message does not include none or a image link!') 
         
         let post = {
             _id: message.id,
@@ -41,6 +42,19 @@ module.exports = {
         } catch(err) {
             console.log(err)
             message.reply(`Error!\nPlease Contact an Admin about this`)
+        }
+        // This will DM a Follower if the User Posted a message!
+        const follower = await client.DBUser.findById(message.author.id)
+        for(const followers of follower.followers){
+            client.users.cache.get(followers).send(`**${message.author.tag}** Made a new post!`)
+            const embed = new MessageEmbed()
+            .setAuthor(message.author.tag, message.author.displayAvatarURL({dynamic: true}))
+            .setTitle(title)
+            .setColor("RANDOM")
+            .setFooter(client.users.cache.get(followers).tag, client.users.cache.get(followers).displayAvatarURL({dynamic: true}))
+            .setDescription(description)
+            if(image !== 'none') embed.setImage(`${image}`)
+            client.users.cache.get(followers).send(embed)
         }
     }
 }
