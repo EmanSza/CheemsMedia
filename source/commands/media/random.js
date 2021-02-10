@@ -13,7 +13,7 @@ module.exports = {
 
         let posts = await client.DBPost.find({});
         let post = posts.random()
-
+        if(!post) return message.channel.send("No posts :thinking:")
         // return console.log(post)
         const user = await client.users.fetch(post.author);
 
@@ -23,7 +23,7 @@ module.exports = {
             .setDescription(post.description)
             .setFooter(user.tag, user.displayAvatarURL({ dynamic: true }));
 
-        if (post.image !== 'None') embed.setImage(post.image);
+        if (post.image !== 'none') embed.setImage(post.image);
 
         message.channel.send(embed)
 
