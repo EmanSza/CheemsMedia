@@ -29,11 +29,10 @@ module.exports = {
         await client.DBUser.findByIdAndUpdate(message.author.id, { $push: { follows: follow.follows } }, { new: true, upsert: true });
         await client.DBUser.findByIdAndUpdate(user.id, { $push: { followers: following.following }, new: true, upsert: true });
         try {
-            message.reply(`Congrats! you followed ${user.tag}`)
-            user.send(` ${message.author.tag} has Followed you!`)
+            await user.send(`${message.author.tag} has Followed you!`)
+            await message.reply(`Congrats! you followed ${user.tag}`)
         } catch (err) {
-            console.log(err)
-            message.reply(`Error!\nPlease Contact an Admin about this`)
+            message.reply(`Congrats! you followed ${user.tag} however I couldn't tell them`)
         }
     }
 }
