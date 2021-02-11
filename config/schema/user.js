@@ -21,6 +21,14 @@ const userSchema = Schema({
     blocked: {
         type: [String],
         default: []
+    },
+    color: {
+        type: String,
+        default: 'bf1932'
+    },
+    bio: {
+        type: String,
+        default: 'A User Description'
     }
 });
 
