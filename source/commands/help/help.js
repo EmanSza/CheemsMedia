@@ -31,7 +31,8 @@ module.exports = {
                 .setTitle("Commands")
                 .addFields(
                     { name: "**Misc**", value: "`ping` See how fast the bot is\n`up` give cheems to a image\n`down` take a cheem away from the image", inline: true },
-                    { name: "**Media**", value: "`post` post a image\n`profile` see your profile statistics\n`random` get a random image\n`follow` Follow someone\n`unfollow` unfollow someone\n", inline: true },
+                    { name: "**Media**", value: "`post` post a image\n`profile` see your profile statistics\n`random` get a random image\n`follow` Follow someone\n`unfollow` unfollow someone\n`block` block someone\n`unblock` unblock someone\n`setbio` Set your user bio!`\nsetcolor` set your profile color!\n", inline: true },
+                    { name: "**Guild**", value: "`channelfeed` Set the Guilds Feed\n`unfeedchannel` Removes The Channels Feed\n`feeduser` Make a user's post go into the guilds Feed!\n`unfeeduser` Remove a guilds Feeded User!\n", inline: false },
                 )
             PEmbed = new MessageEmbed()
                 .setColor('RANDOM')

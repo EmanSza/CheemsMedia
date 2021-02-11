@@ -1,4 +1,4 @@
-const PREFIX = require('../../../../config/botconfig.json').PREFIX;
+const PREFIX = require('../../../../../config/botconfig.json').PREFIX;
 const { MessageEmbed } = require('discord.js')
 // Change DIR if needed
 

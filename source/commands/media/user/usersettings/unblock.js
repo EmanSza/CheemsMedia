@@ -1,8 +1,8 @@
-const PREFIX = require('../../../../config/botconfig.json').PREFIX;
+const PREFIX = require('../../../../../config/botconfig.json').PREFIX;
 // Change DIR if needed
 
 module.exports = {
-    name: "block",
+    name: "unblock",
     aliases: [],
     description: "",
     usage: `\`${PREFIX}\``,
@@ -10,7 +10,7 @@ module.exports = {
     perms: [],
     cooldown: 0,
 
-    execute: async function (client, message, args) {
+    execute: async function(client, message, args) {
         let DBUser = await client.DBUser.findById(message.author.id);
         if (!DBUser) return message.reply('You must signup using the signup command!')
 
@@ -18,11 +18,13 @@ module.exports = {
         if (user.id === message.author.id) return message.reply('You cannot block yourself');
         if (!user) return message.reply('You must give me a users ID!')
         
+        if (!DBUser.blocked.includes(user.id)) return message.channel.send('This user is not blocked!')
+
         let block = { blocked: user.id }
 
-        await client.DBUser.findByIdAndUpdate(message.author.id, { $push: { blocked: block.blocked } }, { new: true, upsert: true });
+        await client.DBUser.findByIdAndUpdate(message.author.id, { $pull: { blocked: block.blocked } }, { new: true, upsert: true });
         try {
-            message.reply(`I have blocked ${user.tag}`)
+          message.reply(`I have blocked ${user.tag}`)
         } catch (err) {
             console.log(err);
             message.reply(`Error!\nPlease Contact an Admin about this`)
