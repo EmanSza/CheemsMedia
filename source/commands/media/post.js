@@ -12,7 +12,7 @@ module.exports = {
     execute: async function (client, message, args) {
         let DBUser = await client.DBUser.findById(message.author.id);
         if (!DBUser) return message.reply('You must signup using the signup command!');
-
+       
         message.channel.send(`${message.author.tag}, what should be the title of the post?`);
 
         let title = await getReply(message, { time: 60000 });
@@ -43,6 +43,12 @@ module.exports = {
             console.log(err)
             message.reply(`Error!\nPlease Contact an Admin about this`)
         }
+        const feedEmbed = new MessageEmbed()
+        .setAuthor(message.author.tag)
+        .setTitle(title)
+        .setDescription(description)
+        .setColor("RANDOM")
+        if(post.image != 'none') feedEmbed.setImage(image)
         // This will DM a Follower if the User Posted a message!
         const follower = await client.DBUser.findById(message.author.id)
         for(const followers of follower.followers){
@@ -55,6 +61,16 @@ module.exports = {
             .setDescription(description)
             if(image !== 'none') embed.setImage(`${image}`)
             client.users.cache.get(followers).send(embed)
+        }
+        //this will send a message to feed channels
+        for(const guild of client.guilds.cache){
+            
+            const guildId = guild[0]
+            const guildData = await client.DBGuild.findById(guildId)
+            if(!guildData) return
+            const channel = client.channels.cache.get(guildData.feedChannel)
+            if(guildData.followedPosters.includes(message.author.id)) return channel.send(feedEmbed)
+            
         }
     }
 }
