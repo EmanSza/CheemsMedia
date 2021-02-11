@@ -11,6 +11,17 @@ module.exports = {
     cooldown: 0,
 
     execute: async function(client, message, args) {
-        message.channel.send('testing')
+        let DBUser = await client.DBUser.findById(message.author.id);
+        if (!DBUser) return message.reply('You must signup using the signup command!')
+    
+        let discription = args.splice(0).join(' ');
+        if (message.content.length > 100) return message.reply('Your profile cannot go above 100')
+        if (!discription) return message.reply('Please give me a bio!!');
+        try {
+            await client.DBUser.findByIdAndUpdate(message.author.id, { $set: { bio: discription } }, { new: true, upsert: true });
+        } catch(err) {
+            console.log(err)
+            message.reply(`Error!\nPlease Contact an Admin about this`)
+        }
     }
 }
