@@ -13,7 +13,7 @@ module.exports = {
 
     execute: async function (client, message, args) {
         let DBUser = await client.DBUser.findById(message.author.id)
-        //if(DBUser) return message.reply('You are already in the database!')
+        if(DBUser) return message.reply('You are already in the database!')
         if(!DBUser) user = await client.DBUser.findByIdAndUpdate(message.author.id, {}, { new: true, upsert: true, setDefaultsOnInsert: true });
         let JoinDate = moment(new Date()).format('LLLL');
         try {

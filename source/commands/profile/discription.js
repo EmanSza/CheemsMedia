@@ -2,7 +2,7 @@ const PREFIX = require('../../../config/botconfig.json').PREFIX;
 // Change DIR if needed
 
 module.exports = {
-    name: "setBio",
+    name: "setbio",
     aliases: [],
     description: "",
     usage: `\`${PREFIX}\``,
@@ -19,6 +19,7 @@ module.exports = {
         if (!discription) return message.reply('Please give me a bio!!');
         try {
             await client.DBUser.findByIdAndUpdate(message.author.id, { $set: { bio: discription } }, { new: true, upsert: true });
+            message.reply(`Your Profile Bio is now ${discription}`)
         } catch(err) {
             console.log(err)
             message.reply(`Error!\nPlease Contact an Admin about this`)
