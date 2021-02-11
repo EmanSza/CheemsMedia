@@ -2,7 +2,9 @@ const {Schema, model} = require('mongoose')
 
 const guildSchema = Schema({
     _id: String,
-    feedChannel: String,
+    feedChannel: {
+        type: String,
+    },
     followedPosters: {
         type: Array,
         default: []

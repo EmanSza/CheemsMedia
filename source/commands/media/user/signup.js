@@ -1,4 +1,4 @@
-const PREFIX = require('../../../config/botconfig.json').PREFIX;
+const PREFIX = require('../../../../config/botconfig.json').PREFIX;
 const moment = require('moment')
 // Change DIR if needed
 

@@ -1,5 +1,4 @@
-const PREFIX = require('../../../config/botconfig.json').PREFIX;
-const { getReply } = require('../../utils/utils')
+const PREFIX = require('../../../../config/botconfig.json').PREFIX;
 // Change DIR if needed
 
 module.exports = {
@@ -12,6 +11,8 @@ module.exports = {
         let user = client.users.cache.get(args[0]) || message.mentions.users.first();
         if (user.id === message.author.id) return message.reply('You cannot follow yourself');
         if (!user) return message.reply('You must give me a users ID!')
+
+        if (!DBUser.follow.includes(user.id)) return message.channel.send('This user is not followed!')
 
         let follow = { follows: user.id }
         let following = { following: message.author.id }

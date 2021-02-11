@@ -1,4 +1,4 @@
-const PREFIX = require('../../../config/botconfig.json').PREFIX;
+const PREFIX = require('../../../../config/botconfig.json').PREFIX;
 // Change DIR if needed
 
 module.exports = {
@@ -10,7 +10,7 @@ module.exports = {
     perms: [],
     cooldown: 0,
 
-    execute: async function(client, message, args) {
+    execute: async function (client, message, args) {
         let DBUser = await client.DBUser.findById(message.author.id);
         if (!DBUser) return message.reply('You must signup using the signup command!')
 
@@ -22,7 +22,7 @@ module.exports = {
 
         await client.DBUser.findByIdAndUpdate(message.author.id, { $push: { blocked: block.blocked } }, { new: true, upsert: true });
         try {
-          message.reply(`I have blocked ${user.tag}`)
+            message.reply(`I have blocked ${user.tag}`)
         } catch (err) {
             console.log(err);
             message.reply(`Error!\nPlease Contact an Admin about this`)

@@ -41,11 +41,9 @@ module.exports = {
                 await message.author.send(MIEmbed)
                 await message.channel.send(AwEmbed)
         } catch {
-
+            message.channel.send("Woops your DM's are closed so im Sending it here!")
             message.channel.send(hEmbed)
             message.channel.send(MIEmbed)
-
-            message.channel.send("Woops your DM's are closed")
 
         }
         }
