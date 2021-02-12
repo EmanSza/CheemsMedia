@@ -1,5 +1,11 @@
+<<<<<<< Updated upstream:source/commands/media/post.js
 const PREFIX = require('../../../config/botconfig.json').PREFIX;
 const { getReply } = require('../../utils/utils')
+=======
+const PREFIX = require('../../../../../config/botconfig.json').PREFIX;
+const { getReply, DMfeed, ChannelFeed } = require('../../../../utils/utils')
+const {MessageEmbed} = require('discord.js')
+>>>>>>> Stashed changes:source/commands/media/user/post/post.js
 // Change DIR if needed
 
 module.exports = {
@@ -32,7 +38,34 @@ module.exports = {
 
         await client.DBUser.findByIdAndUpdate(message.author.id, { $push: { posts: post._id } }, { new: true, upsert: true });
         await client.DBPost.findByIdAndUpdate(message.id, { $set: post }, { new: true, upsert: true })
+<<<<<<< Updated upstream:source/commands/media/post.js
 
         message.reply(`, Good job Cheems!! your post has been uploaded! `)
+=======
+        try {
+        message.reply(` Good job Cheems!! your post has been uploaded! `)
+        } catch(err) {
+            console.log(err)
+            message.reply(`Error!\nPlease Contact an Admin about this`)
+        }
+    /*    const embed = new MessageEmbed()
+            .setAuthor(message.author.tag, message.author.displayAvatarURL({dynamic: true}))
+            .setTitle(title)
+            .setColor("RANDOM")
+            
+            .setDescription(description)
+            if(post.image != 'none') embed.setImage(`${image}`)
+            
+        const feedEmbed = new MessageEmbed()
+        .setAuthor(message.author.tag)
+        .setTitle(title)
+        .setDescription(description)
+        .setColor("RANDOM")
+        if(post.image != 'none') feedEmbed.setImage(`${image}`)
+        // This will DM a Follower if the User Posted a message!
+        DMfeed(message.author.id, message.author.tag, embed, message.client)
+        //this will send a message to feed channels
+        ChannelFeed(message.author.id, message.client, feedEmbed) */
+>>>>>>> Stashed changes:source/commands/media/user/post/post.js
     }
 }

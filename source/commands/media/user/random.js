@@ -1,6 +1,6 @@
-const PREFIX = require('../../../config/botconfig.json').PREFIX;
+const PREFIX = require('../../../../config/botconfig.json').PREFIX;
 const { MessageEmbed } = require('discord.js')
-const { getReply } = require('../../utils/utils')
+const { getReply } = require('../../../utils/utils')
 // Change DIR if needed
 
 module.exports = {
