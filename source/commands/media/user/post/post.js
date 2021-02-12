@@ -43,7 +43,7 @@ module.exports = {
             console.log(err)
             message.reply(`Error!\nPlease Contact an Admin about this`)
         }
-        const feedEmbed = new MessageEmbed()
+      /*  const feedEmbed = new MessageEmbed() 
         .setAuthor(message.author.tag)
         .setTitle(title)
         .setDescription(description)
@@ -69,8 +69,8 @@ module.exports = {
             const guildData = await client.DBGuild.findById(guildId)
             if(!guildData) return
             const channel = client.channels.cache.get(guildData.feedChannel)
-            if(guildData.followedPosters.includes(message.author.id)) return channel.send(feedEmbed)
+            if(guildData.followedPosters.includes(message.author.id)) return channel.send(feedEmbed) 
             
-        }
+        } */
     }
 }
