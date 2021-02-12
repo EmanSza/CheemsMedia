@@ -36,17 +36,6 @@ module.exports = {
              PEmbed = new MessageEmbed()
                 .setColor(EMBED_COLOR)
                 .setTitle("Premium Commands")
-<<<<<<< Updated upstream
-
-
-            message.channel.send(AwEmbed).then
-            setTimeout(function() {
-                message.author.send(hEmbed)
-            }, 500).then
-            setTimeout(function() {
-                message.author.send(MIEmbed)
-            }, 501)
-=======
                 try{
                 await message.author.send(hEmbed)
                 await message.author.send(MIEmbed)
@@ -59,7 +48,6 @@ module.exports = {
             message.channel.send(MIEmbed)
 
         }
->>>>>>> Stashed changes
         }
         else {
             const cmdname = args[0].toLowerCase();

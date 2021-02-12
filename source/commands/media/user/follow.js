@@ -15,19 +15,6 @@ module.exports = {
         
 
 
-<<<<<<< Updated upstream:source/commands/media/follow.js
-        let user = {
-            _id: message.author.id,
-            follows: userID
-        }
-
-        await client.DBUser.findByIdAndUpdate(message.author.id, { $push: { user: user.follows} }, { new: true, upsert: true });
-   try{
-    message.reply(`Congrats! you followed ${userID}`)
-   } catch(err) {
-       message.reply(`Error! \n Please Contact an Admin about this`)
-   }
-=======
         let followinfo = {
             follows: user.id,
             following: message.author.id
@@ -44,6 +31,5 @@ module.exports = {
         } catch (err) {
             message.reply(`Congrats! you followed ${user.tag} however I couldn't tell them`)
         }
->>>>>>> Stashed changes:source/commands/media/user/follow.js
     }
 }
