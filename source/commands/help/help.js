@@ -36,7 +36,6 @@ module.exports = {
              PEmbed = new MessageEmbed()
                 .setColor(EMBED_COLOR)
                 .setTitle("Premium Commands")
-<<<<<<< Updated upstream
 
 
             message.channel.send(AwEmbed).then
@@ -46,20 +45,6 @@ module.exports = {
             setTimeout(function() {
                 message.author.send(MIEmbed)
             }, 501)
-=======
-                try{
-                await message.author.send(hEmbed)
-                await message.author.send(MIEmbed)
-                await message.channel.send(AwEmbed)
-        } catch {
-            
-            message.channel.send("Woops your DM's are closed")
-
-            message.channel.send(hEmbed)
-            message.channel.send(MIEmbed)
-
-        }
->>>>>>> Stashed changes
         }
         else {
             const cmdname = args[0].toLowerCase();
