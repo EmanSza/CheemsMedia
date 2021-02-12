@@ -1,10 +1,5 @@
-# Loners
-EmanSza | Spike
+## Cheems Media
+This is the Social Media bot called Cheems Media inspired by a Reddit/Instagram type we wanted to create a new social media platform for those whom want to try it out
 
-## To do
-
-Edit getReply so it works with attachments
-
-Fix follow command
-
-Make it so if someone follows someone so when they post it pushes out to everyone whom follows them
+## Developers
+EmanSza -Team Leader` | Canta | Spike
