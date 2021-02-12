@@ -3,5 +3,3 @@ This is the Social Media bot called Cheems Media inspired by a Reddit/Instagram 
 
 ## Developers
 EmanSza -Team Leader` | Canta | Spike
-
-TESTING
