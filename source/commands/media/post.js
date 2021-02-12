@@ -1,5 +1,5 @@
 const PREFIX = require('../../../config/botconfig.json').PREFIX;
-const { getReply } = require('../../utils/utils')
+const { getReply, DMfeed, ChannelFeed } = require('../../utils/utils')
 const {MessageEmbed} = require('discord.js')
 // Change DIR if needed
 
@@ -34,7 +34,7 @@ module.exports = {
             description: description.content,
             image: image.content || image
         }
-
+        
         await client.DBUser.findByIdAndUpdate(message.author.id, { $push: { posts: post._id } }, { new: true, upsert: true });
         await client.DBPost.findByIdAndUpdate(message.id, { $set: post }, { new: true, upsert: true })
         try {
@@ -43,34 +43,23 @@ module.exports = {
             console.log(err)
             message.reply(`Error!\nPlease Contact an Admin about this`)
         }
+        const embed = new MessageEmbed()
+            .setAuthor(message.author.tag, message.author.displayAvatarURL({dynamic: true}))
+            .setTitle(title)
+            .setColor("RANDOM")
+            
+            .setDescription(description)
+            if(post.image != 'none') embed.setImage(`${image}`)
+            
         const feedEmbed = new MessageEmbed()
         .setAuthor(message.author.tag)
         .setTitle(title)
         .setDescription(description)
         .setColor("RANDOM")
-        if(post.image != 'none') feedEmbed.setImage(image)
+        if(post.image != 'none') feedEmbed.setImage(`${image}`)
         // This will DM a Follower if the User Posted a message!
-        const follower = await client.DBUser.findById(message.author.id)
-        for(const followers of follower.followers){
-            client.users.cache.get(followers).send(`**${message.author.tag}** Made a new post!`)
-            const embed = new MessageEmbed()
-            .setAuthor(message.author.tag, message.author.displayAvatarURL({dynamic: true}))
-            .setTitle(title)
-            .setColor("RANDOM")
-            .setFooter(client.users.cache.get(followers).tag, client.users.cache.get(followers).displayAvatarURL({dynamic: true}))
-            .setDescription(description)
-            if(image !== 'none') embed.setImage(`${image}`)
-            client.users.cache.get(followers).send(embed)
-        }
+        DMfeed(message.author.id, message.author.tag, embed, message.client)
         //this will send a message to feed channels
-        for(const guild of client.guilds.cache){
-            
-            const guildId = guild[0]
-            const guildData = await client.DBGuild.findById(guildId)
-            if(!guildData) return
-            const channel = client.channels.cache.get(guildData.feedChannel)
-            if(guildData.followedPosters.includes(message.author.id)) return channel.send(feedEmbed)
-            
-        }
+        ChannelFeed(message.author.id, message.client, feedEmbed)
     }
 }
