@@ -3,8 +3,8 @@ const { MessageEmbed } = require('discord.js')
 // Change DIR if needed
 
 module.exports = {
-    name: "posts",
-    aliases: ["ps"],
+    name: "totalposts",
+    aliases: ["tps"],
     description: "Look at a users post!",
     usage: `\`${PREFIX}\``,
     examples: `\`${PREFIX}\``,
