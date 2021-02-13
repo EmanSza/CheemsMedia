@@ -31,8 +31,10 @@ module.exports = {
                 .setTitle("Commands")
                 .addFields(
                     { name: "**Misc**", value: "`ping` See how fast the bot is\n`up` give cheems to a image\n`down` take a cheem away from the image", inline: true },
-                    { name: "**Media**", value: "`post` post a image\n`profile` see your profile statistics\n`random` get a random image\n`follow` Follow someone\n`unfollow` unfollow someone\n`block` block someone\n`unblock` unblock someone\n`setbio` Set your user bio!\n`setcolor` set your profile color!\n`totalposts` See All of a users post\n`deletepost` delete one of your post", inline: true },
-                    { name: "**Guild**", value: "`channelfeed` Set the Guilds Feed\n`unfeedchannel` Removes The Channels Feed\n`feeduser` Make a user's post go into the guilds Feed!\n`unfeeduser` Remove a guilds Feeded User!\n", inline: false },
+                    { name: "**Post**", value: "`post` post a image\n`totalpost` See all the post of a user!\n`viewpost` View a Certain post by ID\n`deletepost` Delete one of your images!\n`random` View a Random post!\n", inline: true },
+                    { name: "**Guild**", value: "`channelfeed` Set the Guilds Feed\n`feeduser` Make the Guild Follow a user!\n`unfeedchannel` unSet the Guilds Feed\n`unfeeduser` Make the Guild unFollow a user!\n", inline: true },
+                    { name: "**User**", value: "`signup` Create a Cheems Media Account!\n`block` Block a user!\n`unblock` unblock a user!\n`follow` Follow a user!\n`unfollow` unFollow a user!\n", inline: true },
+                    { name: "**Misc**", value: "`Profile` View yours or a users Profile!\n`setColor` See set your profiles color!\n`setbio`Set your profiles description!\n", inline: true }
                 )
             PEmbed = new MessageEmbed()
                 .setColor('RANDOM')
