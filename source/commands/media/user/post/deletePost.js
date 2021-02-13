@@ -31,9 +31,7 @@ module.exports = {
             id: DBPost._id,
             author: DBPost.author,
         }
-        console.log('Above IF')
           if(message.author.id !== DBPost.author) return message.reply('You are not the author of this post!')
-        console.log('below if')
           await client.DBPost.findByIdAndDelete(postID, { posts: post.id });
           try {
               message.reply(`Post ${postID} has been deleted!`)

@@ -12,7 +12,7 @@ module.exports = {
     cooldown: 0,
 
     execute: async function (client, message, args) {
-        let user = client.users.cache.get(args[0]) || message.mentions.users.first();
+       let user = client.users.cache.get(args[0]) || message.mentions.users.first();
         if (!user) user = message.author;
 
         // Look for User in the database
@@ -25,24 +25,15 @@ module.exports = {
             DBUser['posts'] = fetch.posts
         }
 
-        let UserInfo = { id: DBUser._id, postarray: DBUser.posts }
-
-        let DBPost = await client.DBPost.findById(UserInfo.postarray)
-        if (!DBPost) {
-            const fetch = await client.DBPost.findById(UserInfo.postarray);
-            DBPost = {}
-            DBPost['id'] = fetch._id
-            DBPost['title'] = fetch.title
-        }
-        let postInfo = { id: DBPost._id, postitle: DBPost.title}
-       
+        let posts = await client.DBPost.find({author: user.id})
+        console.log(posts)
             let hEmbed = new MessageEmbed()
                 .setTitle(`${user.tag} List of Posts!`)
                 .setColor("RANDOM")
                 .setTimestamp()
-           postInfo.id.forEach(element => {
-               hEmbed.addField(postInfo.postitle, postInfo.id)
-           });
+            for(const postinfo of posts){
+                hEmbed.addField(postinfo.title, postinfo._id)
+            }
            message.channel.send(hEmbed)
     }
 }

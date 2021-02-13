@@ -22,7 +22,7 @@ module.exports = {
         let description = await getReply(message, { time: 120000 });
         if (!description) return message.channel.send(`${message.author.tag}, times up! Try again.`);
 
-        message.channel.send(`${message.author.tag}, do you want to add an image?`);
+        message.channel.send(`${message.author.tag}, if you want to add a image send it! if not respond with **none**`);
         let image = await getReply(message, { time: 60000, type: 'image' });
         if(image.attachments.size > 0)  image = image.attachments.first().url
         else if(!image.content.toLowerCase().includes('none') && !image.content.toLowerCase().includes('https://')) return message.reply('You message does not include none or a image link!') 
@@ -52,6 +52,7 @@ module.exports = {
         // This will DM a Follower if the User Posted a message!
         const follower = await client.DBUser.findById(message.author.id)
         for(const followers of follower.followers){
+            if(!followers) return;
             client.users.cache.get(followers).send(`**${message.author.tag}** Made a new post!`)
             const embed = new MessageEmbed()
             .setAuthor(message.author.tag, message.author.displayAvatarURL({dynamic: true}))

@@ -1,0 +1,39 @@
+const PREFIX = require('../../../../../config/botconfig.json').PREFIX;
+const { getReply, DMfeed, ChannelFeed } = require('../../../../utils/utils')
+// Change DIR if needed
+
+module.exports = {
+    name: "editdescription",
+    aliases: [],
+    description: "",
+    usage: `\`${PREFIX}\``,
+    examples: `\`${PREFIX}\``,
+    perms: [],
+    cooldown: 0,
+
+    execute: async function(client, message, args) {
+        let DBUser = await client.DBUser.findById(message.author.id);
+        if (!DBUser) return message.reply('You must signup using the signup command!');
+       
+        message.channel.send(`${message.author.tag}, What is the posts id??`);
+
+        let postID = await getReply(message, { time: 60000 });
+        if (!postID) return message.channel.send(`${message.author.tag}, times up! Try again.`);
+
+        let DBPost = await client.DBPost.findById(postID.content)
+        if(!DBPost) return message.reply('Give me an valid id!')
+        if(DBPost.author != message.author.id) return message.reply('You are not the author of this post')
+       
+        message.channel.send(`${message.author.tag}, what should be the description of the post?`);
+        let description = await getReply(message, { time: 120000 });
+        if (!description) return message.channel.send(`${message.author.tag}, times up! Try again.`);
+
+
+          try{
+            await client.DBPost.findByIdAndUpdate(postID.content, { $set: { description: description.content } }, { new: true, upsert: true });
+            message.reply(`POST ${postID.content} Description is now set to\n ${description.content}`)
+          } catch(err) {
+
+          }
+    }
+}

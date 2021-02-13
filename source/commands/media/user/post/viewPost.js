@@ -46,21 +46,8 @@ module.exports = {
         .setDescription(post.description)
         .setFooter(post.author);
 
-        if (post.image !== 'None') embed.setImage(post.image);
+        if (post.image !== 'none') embed.setImage(post.image);
 
         message.channel.send(embed)
-
-        let reply = await getReply(message, { time: 30000 })
-        if (!reply) return;
-        if (reply.content.toLowerCase() === '!up') {
-            await client.DBPost.findByIdAndUpdate(post._id, { $inc: { upvotes: 1 } }, { new: true, upsert: true });
-            await client.DBUser.findByIdAndUpdate(post.author, { $inc: { cheems: 1 } }, { new: true, upsert: true });
-            message.reply('Cheems Given! 😊')
-        }
-        else if (reply.content.toLowerCase() === '!down') {
-            await client.DBPost.findByIdAndUpdate(post._id, { $inc: { downvotes: 1 } }, { new: true, upsert: true });
-            await client.DBUser.findByIdAndUpdate(post.author, { $inc: { cheems: -1 } }, { new: true, upsert: true });
-            message.reply('Cheems Taken! 😢')
-        }
     }
 }

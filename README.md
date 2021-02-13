@@ -3,3 +3,10 @@ This is the Social Media bot called Cheems Media inspired by a Reddit/Instagram 
 
 ## Developers
 EmanSza -Team Leader` | Canta | Spike
+
+## To list
+
+-Add Message System
+-With the messaging system fix up the blocking system
+-Add more profile commands
+-Fix up Comment System -Too Advanced for me so Canta when you have time please do this-
