@@ -28,7 +28,7 @@ module.exports = {
                     { name: "**Misc**", value: "`ping` See how fast the bot is\n`up` give cheems to a image\n`down` take a cheem away from the image", inline: true },
                     { name: "**Post**", value: "`post` post a image\n`totalpost` See all the post of a user!\n`viewpost` View a Certain post by ID\n`deletepost` Delete one of your posts!!\n`random` View a Random post!\n`editdescription` Edit a post description!", inline: true },
                     { name: "**Guild**", value: "`channelfeed` Set the Guilds Feed\n`feeduser` Make the Guild Follow a user!\n`unfeedchannel` unSet the Guilds Feed\n`unfeeduser` Make the Guild unFollow a user!\n", inline: true },
-                    { name: "**User**", value: "`signup` Create a Cheems Media Account!\n`block` Block a user!\n`unblock` unblock a user!\n`follow` Follow a user!\n`unfollow` unFollow a user!\n", inline: true },
+                    { name: "**User**", value: "`signup` Create a Cheems Media Account!\n`block` Block a user!\n`unblock` unblock a user!\n`follow` Follow a user!\n`unfollow` unFollow a user!\n`directmessage` Message a user!\n", inline: true },
                     { name: "**Profile**", value: "`Profile` View yours or a users Profile!\n`setColor` See set your profiles color!\n`setbio`Set your profiles description!\n", inline: true }
                 )
                 try{

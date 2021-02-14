@@ -4,7 +4,7 @@ const { MessageEmbed } = require('discord.js')
 
 module.exports = {
     name: "totalposts",
-    aliases: ["tps"],
+    aliases: ["tps", "totalpost"],
     description: "Look at a users post!",
     usage: `\`${PREFIX}\``,
     examples: `\`${PREFIX}\``,
@@ -12,6 +12,7 @@ module.exports = {
     cooldown: 0,
 
     execute: async function (client, message, args) {
+
        let user = client.users.cache.get(args[0]) || message.mentions.users.first();
         if (!user) user = message.author;
 
@@ -26,7 +27,6 @@ module.exports = {
         }
 
         let posts = await client.DBPost.find({author: user.id})
-        console.log(posts)
             let hEmbed = new MessageEmbed()
                 .setTitle(`${user.tag} List of Posts!`)
                 .setColor("RANDOM")

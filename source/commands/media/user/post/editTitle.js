@@ -3,7 +3,7 @@ const { getReply, DMfeed, ChannelFeed } = require('../../../../utils/utils')
 // Change DIR if needed
 
 module.exports = {
-    name: "editdescription",
+    name: "edittitle",
     aliases: [],
     description: "",
     usage: `\`${PREFIX}\``,
@@ -24,14 +24,14 @@ module.exports = {
         if(!DBPost) return message.reply('Give me an valid id!')
         if(DBPost.author != message.author.id) return message.reply('You are not the author of this post')
        
-        message.channel.send(`${message.author.tag}, What should be the new description of the post be?`);
-        let description = await getReply(message, { time: 120000 });
-        if (!description) return message.channel.send(`${message.author.tag}, times up! Try again.`);
+        message.channel.send(`${message.author.tag}, What should the new Title be??`);
+        let title = await getReply(message, { time: 120000 });
+        if (!title) return message.channel.send(`${message.author.tag}, times up! Try again.`);
 
 
           try{
-            await client.DBPost.findByIdAndUpdate(postID.content, { $set: { description: description.content } }, { new: true, upsert: true });
-            message.reply(`POST ${postID.content} Description is now set to\n ${description.content}`)
+            await client.DBPost.findByIdAndUpdate(postID.content, { $set: { setTitle: title.content } }, { new: true, upsert: true });
+            message.reply(`POST ${postID.content} Description is now set to\n ${title.content}`)
           } catch(err) {
 
           }

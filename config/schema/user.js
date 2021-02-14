@@ -24,7 +24,7 @@ const userSchema = Schema({
     },
     color: {
         type: String,
-        default: '#FD00617'
+        default: '#bf1932'
     },
     bio: {
         type: String,

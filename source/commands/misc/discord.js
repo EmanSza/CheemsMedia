@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 // Change DIR if needed
 
 module.exports = {
-    name: "ping",
+    name: "discord",
     aliases: [],
     description: "",
     usage: `\`See how fast the bot is\``,
@@ -12,10 +12,6 @@ module.exports = {
     cooldown: 0,
 
     execute: async function(client, message, args) {
-        message.reply('Calculating ping...').then((resultMessage) => {
-            const ping = resultMessage.createdTimestamp - message.createdTimestamp
-      
-            resultMessage.edit(`Bot latency: ${ping}\nAPI Latency: ${client.ws.ping}`)
-          })
+        message.channel.send('join.cheemsmedia.xyz')
     }
 }
