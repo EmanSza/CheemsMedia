@@ -4,14 +4,32 @@ const userSchema = Schema({
     _id: String,
     posts: [String],
     followers: {
-        type: Number,
-        default: 0,
+        type: [String],
+        default: [],
     },
     cheems: {
         type: Number,
         default: 0,
     },
-    follows: [String]
+    follows: {
+        type: [String],
+        default: []
+    },
+    joindate: {
+        type: String
+    },
+    blocked: {
+        type: [String],
+        default: []
+    },
+    color: {
+        type: String,
+        default: '#bf1932'
+    },
+    bio: {
+        type: String,
+        default: 'A User Description'
+    }
 });
 
 module.exports = model('users', userSchema);

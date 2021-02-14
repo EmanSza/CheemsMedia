@@ -195,8 +195,27 @@ function randomRange(min, max) {
 function delay(ms) {
     return new Promise(resolve => setTimeout(resolve, ms))
 }
-
+async function DMfeed(message1, author, message2, client){
+    const follower = await client.DBUser.findById(message1)
+    
+        for(const followers of follower.followers){
+            client.users.cache.get(followers).send(`**${author}** Made a new post!`)
+            
+            client.users.cache.get(followers).send(message2)
+        }
+}
+async function ChannelFeed(author, client, message){
+    for(const guild of client.guilds.cache){
+            
+        const guildId = guild[0]
+        const guildData = await client.DBGuild.findById(guildId)
+        if(!guildData) return
+        const channel = client.channels.cache.get(guildData.feedChannel)
+        if(guildData.followedPosters.includes(author)) return channel.send(message)
+        
+    }
+}
 module.exports = {
     processArguments, blacklist, whitelist, paginate,
-    getReply, randomRange, delay
+    getReply, randomRange, delay, DMfeed, ChannelFeed
 }

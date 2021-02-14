@@ -36,15 +36,18 @@ module.exports = {
              PEmbed = new MessageEmbed()
                 .setColor(EMBED_COLOR)
                 .setTitle("Premium Commands")
+                try{
+                await message.author.send(hEmbed)
+                await message.author.send(MIEmbed)
+                await message.channel.send(AwEmbed)
+        } catch {
+            
+            message.channel.send("Woops your DM's are closed")
 
+            message.channel.send(hEmbed)
+            message.channel.send(MIEmbed)
 
-            message.channel.send(AwEmbed).then
-            setTimeout(function() {
-                message.author.send(hEmbed)
-            }, 500).then
-            setTimeout(function() {
-                message.author.send(MIEmbed)
-            }, 501)
+        }
         }
         else {
             const cmdname = args[0].toLowerCase();

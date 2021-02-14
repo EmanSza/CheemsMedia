@@ -1,6 +1,6 @@
-const PREFIX = require('../../../../config/botconfig.json').PREFIX;
+const PREFIX = require('../../../../../config/botconfig.json').PREFIX;
 const { MessageEmbed } = require('discord.js')
-const { getReply } = require('../../../utils/utils')
+const { getReply } = require('../../../../utils/utils')
 // Change DIR if needed
 
 module.exports = {
@@ -21,7 +21,7 @@ module.exports = {
         .setDescription(post.description)
         .setFooter(user.tag, user.displayAvatarURL({ dynamic: true }));
 
-        if (post.image !== 'None') embed.setImage(post.image);
+        if (post.image.toLowerCase() !== 'None') embed.setImage(post.image);
 
         message.channel.send(embed)
 

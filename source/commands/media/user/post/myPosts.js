@@ -26,7 +26,7 @@ module.exports = {
         }
 
         let posts = await client.DBPost.find({author: user.id})
-        console.log(posts)
+       // console.log(posts)
             let hEmbed = new MessageEmbed()
                 .setTitle(`${user.tag} List of Posts!`)
                 .setColor("RANDOM")
