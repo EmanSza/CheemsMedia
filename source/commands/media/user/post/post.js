@@ -13,19 +13,20 @@ module.exports = {
         let DBUser = await client.DBUser.findById(message.author.id);
         if (!DBUser) return message.reply('You must signup using the signup command!');
        
-        message.channel.send(`${message.author.tag}, what should be the title of the post?`);
+        message.channel.send(`${message.author.tag}, what should be the title of the post? **You can type \`cancel\` any time to stop it**`);
 
         let title = await getReply(message, { time: 60000 });
         if (!title) return message.channel.send(`${message.author.tag}, times up! Try again.`);
-
+        if(title.content.toLowerCase() == 'cancel') return
         message.channel.send(`${message.author.tag}, what should be the description of the post?`);
         let description = await getReply(message, { time: 120000 });
         if (!description) return message.channel.send(`${message.author.tag}, times up! Try again.`);
-
+        if(description.content.toLowerCase() == 'cancel') return
         message.channel.send(`${message.author.tag}, if you want to add a image send it! if not respond with **none**`);
         let image = await getReply(message, { time: 60000, type: 'image' });
+        if(image.content.toLowerCase() == 'cancel') return
         if(image.attachments.size > 0)  image = image.attachments.first().url
-        else if(!image.content.toLowerCase().includes('none') && !image.content.toLowerCase().includes('https://')) return message.reply('You message does not include none or a image link!') 
+        else if(image.content.toLowerCase() != 'none' && !image.content.toLowerCase().includes('https://')) return message.reply('You message does not include none or a image link!') 
         
         let post = {
             _id: message.id,
@@ -48,30 +49,12 @@ module.exports = {
         .setTitle(title)
         .setDescription(description)
         .setColor("RANDOM")
-        if(post.image != 'none') feedEmbed.setImage(image)
+        if(post.image.toLowerCase() != 'none') feedEmbed.setImage(image)
         // This will DM a Follower if the User Posted a message!
-        const follower = await client.DBUser.findById(message.author.id)
-        for(const followers of follower.followers){
-            if(!followers) return;
-            client.users.cache.get(followers).send(`**${message.author.tag}** Made a new post!`)
-            const embed = new MessageEmbed()
-            .setAuthor(message.author.tag, message.author.displayAvatarURL({dynamic: true}))
-            .setTitle(title)
-            .setColor("RANDOM")
-            .setFooter(client.users.cache.get(followers).tag, client.users.cache.get(followers).displayAvatarURL({dynamic: true}))
-            .setDescription(description)
-            if(image !== 'none') embed.setImage(`${image}`)
-            client.users.cache.get(followers).send(embed)
-        }
+        
+        DMfeed(message.author.id, title.content, description.content, post.image.toLowerCase(), message.client)
+      
         //this will send a message to feed channels
-        for(const guild of client.guilds.cache){
-            
-            const guildId = guild[0]
-            const guildData = await client.DBGuild.findById(guildId)
-            if(!guildData) return
-            const channel = client.channels.cache.get(guildData.feedChannel)
-            if(guildData.followedPosters.includes(message.author.id)) return channel.send(feedEmbed)
-            
-        }
+        ChannelFeed(message.author.id, message.client, feedEmbed)
     }
 }

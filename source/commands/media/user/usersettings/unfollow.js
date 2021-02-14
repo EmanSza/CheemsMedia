@@ -12,8 +12,9 @@ module.exports = {
         let user = client.users.cache.get(args[0]) || message.mentions.users.first();
         if (user.id === message.author.id) return message.reply('You cannot follow yourself');
         if (!user) return message.reply('You must give me a users ID!')
-
-        if (!DBUser.follow.includes(user.id)) return message.channel.send('This user is not followed!')
+        const follower = await client.DBUser.findById(message.author.id)
+        
+        if(!follower.follows.includes(user.id)) return message.reply('This user is not followed!')
 
         let follow = { follows: user.id }
         let following = { following: message.author.id }
@@ -21,10 +22,10 @@ module.exports = {
         await client.DBUser.findByIdAndUpdate(message.author.id, { $pull: { follows: follow.follows } }, { new: true, upsert: true });
         await client.DBUser.findByIdAndUpdate(user.id, { $pull: { followers: following.following }, new: true, upsert: true });
         try {
-            message.reply(`Congrats! you followed ${user.id}`)
-            user.send(` ${message.author.tag} has unfollowed you!`)
+            await user.send(` ${message.author.tag} has unfollowed you!`)
+            await message.reply(`Congrats! you unfollowed ${user.id}`)
         } catch (err) {
-            message.reply(`Error! \n Please Contact an Admin about this`)
+            message.reply(`Congrats! you unfollowed ${user.id} but I couldn't tell them`)
         }
     }
 }

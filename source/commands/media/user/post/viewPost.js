@@ -46,7 +46,7 @@ module.exports = {
         .setDescription(post.description)
         .setFooter(post.author);
 
-        if (post.image !== 'none') embed.setImage(post.image);
+        if (post.image.toLowerCase() !== 'none') embed.setImage(post.image);
 
         message.channel.send(embed)
     }

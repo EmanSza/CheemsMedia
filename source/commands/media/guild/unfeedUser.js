@@ -2,7 +2,7 @@ const PREFIX = require('../../../../config/botconfig.json').PREFIX;
 
 module.exports = {
     name: "unfeeduser",
-    aliases: ["fu", "feed"],
+    aliases: ["unfu", "unfeed"],
     description: "Set a user when they post a there's a notification on channel",
     usage: `\`${PREFIX}follow\``,
     perms: ['MANAGE_CHANNELS'],
