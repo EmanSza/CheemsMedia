@@ -27,13 +27,36 @@ module.exports = {
         }
 
         let posts = await client.DBPost.find({author: user.id})
-            let hEmbed = new MessageEmbed()
-                .setTitle(`${user.tag} List of Posts!`)
-                .setColor("RANDOM")
-                .setTimestamp()
-            for(const postinfo of posts){
-                hEmbed.addField(postinfo.title, postinfo._id)
-            }
-           message.channel.send(hEmbed)
+            if(!posts) return message.reply('You haven\'t created an post!')
+        
+                    
+            const hEmbed = new MessageEmbed()
+            .setColor("RANDOM")
+            .setTimestamp()
+
+                const generateEmbed = start => {
+                    const current = posts.slice(start, start + 15)
+                    hEmbed.setTitle(`Showing ${user.tag}'s posts ${start + 1}-${start + current.length} out of ${posts.length}`)
+                    current.forEach(post => hEmbed.addField(`📝${post.title}`, `**ID:** ${post.id}`))
+                    return hEmbed
+                  }
+                  
+           const msg = await message.channel.send(generateEmbed(0))
+           if(posts.length <= 15) return
+           msg.react('➡️')
+           const filter = (reaction, user) => ['⬅️', '➡️'].includes(reaction.emoji.name) && user.id === message.author.id
+           const collector = msg.createReactionCollector(filter, {time: 60000})
+           let currrentIndex = 0;
+           collector.on('collect', async reaction => {
+               msg.reactions.removeAll().then(async() => {
+                   reaction.emoji.name === '⬅️' ? currrentIndex -= 15 : currrentIndex += 15                   
+               msg.edit(generateEmbed(currrentIndex))
+               if(currrentIndex !== 0) await msg.react('⬅️')
+               if(currrentIndex + 15 < posts.length) msg.react('➡️')
+               })
+           })
+           collector.on('end', async reaction => {
+               msg.reactions.removeAll()
+           })
     }
 }
