@@ -1,7 +1,7 @@
 {
     "TOKEN": "ODA3NzA2NTgzMTczMDM4MDgw.YB75Xw.44TlBQ5NN_dqD8S-otLE-AAXUV4",
     "PREFIX": "!",
-    "MONGOURI": "mongodb+srv://cockandball1:cockandballss2@cluster0.16pcf.mongodb.net/cheemsmedia?retryWrites=true&w=majority",
+    "MONGOURI": "mongodb+srv://CheemsMedia:3ZKWCHr0vL71n02e@cheemsmedia.r47zc.mongodb.net/CheemsMedia?retryWrites=true&w=majority",
     "BOTADMINS": ["277215400696217610","519861424017768451","698692885553610773"],
     "Developers": ["519861424017768451"],
     "SomeServers": [""]
