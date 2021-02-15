@@ -1,0 +1,8 @@
+{
+    "TOKEN": "ODA3NzA2NTgzMTczMDM4MDgw.YB75Xw.Uu9YfErUUlASF7T_sFMjueGrswA",
+    "PREFIX": "!",
+    "MONGOURI": "mongodb+srv://cockandball1:cockandballss2@cluster0.16pcf.mongodb.net/cheemsmedia?retryWrites=true&w=majority",
+    "BOTADMINS": ["277215400696217610","519861424017768451","698692885553610773"],
+    "Developers": ["519861424017768451"],
+    "SomeServers": [""]
+}
