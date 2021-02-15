@@ -18,6 +18,10 @@ const userSchema = Schema({
     joindate: {
         type: String
     },
+    favourites: {
+        type: [String],
+        default: []
+    },
     blocked: {
         type: [String],
         default: []

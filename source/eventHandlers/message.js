@@ -1,7 +1,7 @@
 const { processArguments } = require("../utils/utils")
 const { Collection } = require("discord.js")
 const cooldowns = new Collection();
-const { PREFIX} = require('../../config/botconfig.json')
+const { PREFIX, Developers, SomeServers} = require('../../config/botconfig.json')
 
 module.exports = async (client, message) => {
     if (message.author.bot || message.channel.type === 'dm' || client.blacklistCache.has(message.author.id)) return;
@@ -14,6 +14,9 @@ module.exports = async (client, message) => {
     const command = await client.commands.get(cmdName) || client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(cmdName));
 
     if (!command) return;
+    
+    if (command.devOnly && !Developers.includes(message.author.id))
+    if (command.ServerOnly && !SomeServers.includes(message.guild.id))
 
 
 
