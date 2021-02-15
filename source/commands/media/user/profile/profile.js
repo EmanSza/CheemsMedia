@@ -16,7 +16,7 @@ module.exports = {
     if (!user) user = message.author
 
     let DBUser = await client.DBUser.findById(user.id);
-    if (!DBUser) return message.reply('You must signup using the signup command!')
+    if (!DBUser) return message.reply('Please sign up using the signup command\nif you are signed up if your mentioning someone they have not Opted in!')
 
     //  if (user.id === message.author.id) return
 
