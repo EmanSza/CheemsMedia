@@ -13,9 +13,11 @@ module.exports = {
     examples: "",
     cooldown: 0,
     canNotDisable: false,
+    devOnly: true,
+    adminOnly: true,
+    someServersOnly: false,
     
     execute: async function(client, message, args) {
-        if (!BOTADMINS.includes(message.author.id)) return; 
 
          const user = message.mentions.users.first()
          if(!user) return message.reply('You didn\'t mention anyone!');

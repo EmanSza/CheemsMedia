@@ -17,8 +17,8 @@ const postSchema = Schema({
     upvotes: Number,
     downvotes: Number,
     checked: {
-        type: String,
-        default: "unchecked"
+        type: Boolean,
+        default: false
     },
     comments: commentSchema
 })

@@ -2,5 +2,7 @@
     "TOKEN": "TOKEN",
     "PREFIX": "PREFIX",
     "MONGOURI": "MONGOURI",
-    "BOTADMINS": ["BOTADMINSID"]
+    "BOTADMINS": ["BOTADMINSID"],
+    "Developers": [""],
+    "someServers": [""]
 }
