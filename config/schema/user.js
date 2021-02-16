@@ -31,8 +31,8 @@ const userSchema = Schema({
         default: 'A User Description'
     },
     verified: {
-        type: String,
-        default: "false"
+        type: Boolean,
+        default: false
     }
 });
 

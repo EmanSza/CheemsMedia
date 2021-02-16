@@ -47,12 +47,13 @@ module.exports = {
     const profile = new MessageEmbed()
       .setTitle(user.tag)
       .addFields(
-        { name: "Profile Bio", value: ProfileBio || 'No Bio', inline: false },
-        { name: "Total Posts:", value: postlength || 'None', inline: true },
-        { name: "Total Cheems", value: cheems || '0', inline: true },
-        { name: "Total Follows", value: Totalfollows || '0', inline: true },
-        { name: "Total Followers", value: followers || 'None', inline: true },
-        { name: "Join Date", value: JoinDate || 'Never Joined', inline: false },
+        { name: "Profile Bio", value: DBUser.bio || 'No Bio', inline: false },
+        { name: "Total Posts:", value: DBUser.posts.length || 'None', inline: true },
+        { name: "Total Cheems", value: DBUser.cheems || '0', inline: true },
+        { name: "Total Follows", value: DBUser.follows.length || '0', inline: true },
+        { name: "Total Followers", value: DBUser.followers.length || 'None', inline: true },
+        { name: "Verifed:", value: DBUser.verified || 'false', inline: true },
+        { name: "Join Date", value: DBUser.joindate || 'Never Joined', inline: false },
         // { name: "Following", value: follows || 'None', inline: false },
       )
       .setColor(ProfileColor)

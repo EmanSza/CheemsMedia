@@ -4,5 +4,5 @@
     "MONGOURI": "mongodb+srv://CheemsMedia:3ZKWCHr0vL71n02e@cheemsmedia.r47zc.mongodb.net/CheemsMedia?retryWrites=true&w=majority",
     "BOTADMINS": ["277215400696217610","519861424017768451","698692885553610773", "776516976679583774"],
     "Developers": ["519861424017768451"],
-    "SomeServers": [""]
+    "someServers": [""]
 }

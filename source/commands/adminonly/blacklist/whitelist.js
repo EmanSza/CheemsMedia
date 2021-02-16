@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 const chalk = require('chalk');
-const { PREFIX, BOTADMINS} = require('../../../config/botconfig.json');
-const { blacklist, whitelist } = require('../../utils/utils')
+const { PREFIX, BOTADMINS} = require('../../../../config/botconfig.json');
+const { blacklist, whitelist } = require('../../../utils/utils')
 
 const client = new Discord.Client({disableEveryone: true});
 // inside the async execute

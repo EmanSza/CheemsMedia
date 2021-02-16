@@ -9,6 +9,9 @@ module.exports = {
     examples: `\`${PREFIX}\``,
     perms: [],
     cooldown: 0,
+    devOnly: false,
+    adminOnly: false,
+    someServersOnly: false,
 
     execute: async function(client, message, args) {
 
