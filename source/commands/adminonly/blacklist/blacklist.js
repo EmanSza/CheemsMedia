@@ -14,7 +14,7 @@ module.exports = {
     examples: "",
     cooldown: 0,
     canNotDisable: false,
-    devOnly: true,
+    devOnly: false,
     adminOnly: true,
     someServersOnly: false,
     
