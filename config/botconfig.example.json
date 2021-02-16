@@ -4,5 +4,6 @@
     "MONGOURI": "MONGOURI",
     "BOTADMINS": ["BOTADMINSID"],
     "Developers": [""],
-    "someServers": [""]
+    "someServers": [""],
+    "test": ""
 }
