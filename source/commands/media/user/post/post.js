@@ -34,7 +34,7 @@ module.exports = {
             title: title.content,
             description: description.content,
             image: image.content || image,
-            checked: "unchecked"
+            checked: false
         }
 
         await client.DBUser.findByIdAndUpdate(message.author.id, { $push: { posts: post._id } }, { new: true, upsert: true });
