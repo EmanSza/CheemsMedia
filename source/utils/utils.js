@@ -224,6 +224,21 @@ async function ChannelFeed(author, client, message){
         
     }
 }
+async function staffFeed(poster, title, description, image, client, _id){
+    const channel = client.channels.cache.get('811596791597236264')
+    const author = client.users.cache.get(poster)
+    const embed = new MessageEmbed()
+    .setAuthor(author.tag, author.displayAvatarURL({dynamic: true}))
+    .setTitle(title)
+    .setColor("RANDOM")
+    .setFooter(`POST ID: ${_id}`)
+    .setDescription(description)
+    if(image.toLowerCase() !== 'none') embed.setImage(`${image}`)
+
+    
+    channel.send(`${author.tag} Posted` + embed)
+}
+
 module.exports = {
     processArguments, blacklist, whitelist, paginate,
     getReply, randomRange, delay, DMfeed, ChannelFeed

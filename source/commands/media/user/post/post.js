@@ -1,5 +1,5 @@
 const PREFIX = require('../../../../../config/botconfig.json').PREFIX;
-const { getReply, DMfeed, ChannelFeed } = require('../../../../utils/utils')
+const { getReply, DMfeed, ChannelFeed, staffFeed } = require('../../../../utils/utils')
 const {MessageEmbed} = require('discord.js')
 // Change DIR if needed
 
@@ -57,5 +57,7 @@ module.exports = {
       
         //this will send a message to feed channels
         ChannelFeed(message.author.id, message.client, feedEmbed)
+        //this will send all posts to a Cheems media channel to check if the message is allowed
+        staffFeed(message.author.id, title.content, description.content, post.image.toLowerCase(), message.client, post._id)
     }
 }
