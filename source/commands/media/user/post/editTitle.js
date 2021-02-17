@@ -26,6 +26,7 @@ module.exports = {
        
         message.channel.send(`${message.author.tag}, What should the new Title be??`);
         let title = await getReply(message, { time: 120000 });
+        if (title.content.length > 75) return message.reply('Your title cannot go above 75 characters')
         if (!title) return message.channel.send(`${message.author.tag}, times up! Try again.`);
 
 

@@ -26,6 +26,7 @@ module.exports = {
        
         message.channel.send(`${message.author.tag}, What should be the new description of the post be?`);
         let description = await getReply(message, { time: 120000 });
+        if (description.content.length > 100) return message.reply('Your description cannot go above 150 characters')
         if (!description) return message.channel.send(`${message.author.tag}, times up! Try again.`);
 
 
