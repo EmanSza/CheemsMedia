@@ -21,7 +21,7 @@ module.exports = {
                 .setURL("https://discord.gg/jRnTbRPjdr")
                 .setColor('#FD0061')
                 .setTitle("Help Menu")
-                .setDescription(`Use \`${PREFIX}help [command name]\` to get more info on a specific command, for example: \`${PREFIX}help ping\` \n Dont Forget to use the \`signup\` command to signup for our bot! `)
+                .setDescription(`Use \`!help [command name]\` to get more info on a specific command, for example: \`!help ping\` \n Dont Forget to use the \`signup\` command to signup for our bot! `)
                 .setThumbnail(client.user.displayAvatarURL({ dynamic: true, size: 2048 }))
                 .addFields(
                     { name: "**Misc**", value: "`ping` See how fast the bot is\n`info` See Bot Information\n`up` give cheems to a image\n`down` take a cheem away from the image", inline: true },
