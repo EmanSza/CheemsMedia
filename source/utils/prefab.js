@@ -11,6 +11,9 @@ module.exports = {
     devOnly: false,
     ServerOnly: false,
     cooldown: 0,
+    devOnly: false,
+    adminOnly: false,
+    someServersOnly: false,
 
     execute: async function(client, message, args) {
 

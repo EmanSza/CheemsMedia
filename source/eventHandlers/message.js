@@ -1,7 +1,7 @@
 const { processArguments } = require("../utils/utils")
 const { Collection } = require("discord.js")
 const cooldowns = new Collection();
-const { PREFIX, BOTADMINS, Developers, someServers} = require('../../config/botconfig.json')
+const { PREFIX, Developers, BOTADMINS, someServers } = require('../../config/botconfig.json')
 
 module.exports = async (client, message) => {
     if (message.author.bot || message.channel.type === 'dm' || client.blacklistCache.has(message.author.id)) return;
@@ -18,6 +18,9 @@ module.exports = async (client, message) => {
     if(command.devOnly && !Developers.includes(message.author.id)) return;
     if (command.ServerOnly && !SomeServers.includes(message.guild.id))
 
+    if (command.devOnly && !Developers.includes(message.author.id)) return;
+    if (command.AdminOnly && !BOTADMINS.includes(message.author.id)) return;
+    if (command.someServersOnly && !someServers.includes(message.guild.id)) return;
 
 
     if (command.perms && !message.member.hasPermission(command.perms)) return;

@@ -30,6 +30,7 @@ module.exports = {
         { name: "Total Followers", value: DBUser.followers.length || 'None', inline: true },
         { name: "Verifed:", value: DBUser.verified || 'false', inline: true },
         { name: "Join Date", value: DBUser.joindate || 'Never Joined', inline: false },
+        // { name: "Following", value: follows || 'None', inline: false },
       )
       .setColor(ProfileColor)
       .setThumbnail(user.displayAvatarURL())
