@@ -3,7 +3,7 @@ const PREFIX = require('../../../../../config/botconfig.json').PREFIX;
 
 module.exports = {
   name: "setcolor",
-  aliases: [],
+  aliases: ["setcolour"],
   description: "",
   usage: `\`${PREFIX}\``,
   examples: `\`${PREFIX}\``,

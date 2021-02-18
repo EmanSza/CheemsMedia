@@ -31,7 +31,7 @@ module.exports = {
 
 
           try{
-            await client.DBPost.findByIdAndUpdate(postID.content, { $set: { setTitle: title.content } }, { new: true, upsert: true });
+            await client.DBPost.findByIdAndUpdate(postID.content, { $set: { title: title.content } }, { new: true, upsert: true });
             message.reply(`POST ${postID.content} Description is now set to\n ${title.content}`)
           } catch(err) {
 

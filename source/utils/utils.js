@@ -239,7 +239,12 @@ async function staffFeed(poster, title, description, image, client, _id){
     channel.send(`${author.tag} Posted` + embed)
 }
 
+async function databaseCheck(client, message, myCall) {
+    let DBUser = await client.DBUser.findById(message.author.id);
+    if (!DBUser) return message.reply('You must signup using the signup command!');
+}
 module.exports = {
     processArguments, blacklist, whitelist, paginate,
-    getReply, randomRange, delay, DMfeed, ChannelFeed
+    getReply, randomRange, delay, DMfeed, ChannelFeed,
+    databaseCheck
 }

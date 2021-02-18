@@ -33,6 +33,10 @@ const userSchema = Schema({
     verified: {
         type: Boolean,
         default: false
+    },
+    dmOpt: {
+        type: Boolean,
+        default: true
     }
 });
 
