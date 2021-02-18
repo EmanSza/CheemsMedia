@@ -15,13 +15,13 @@ module.exports = {
         if (!DBAuthor) return message.reply('You must signup using the signup command!');
 
         let user = client.users.cache.get(args[0]) || message.mentions.users.first();
-        if (!user) return('You must DM a user!')
-        if(user.id === message.author.id) return message.reply('You cannot DM yourself!')
+        if (!user) return message.reply('You must DM a user!') 
+        if(message.author.id === user.id) return message.reply('You cannot DM yourself!')
 
         let DBUser = await client.DBUser.findById(user.id)
         if(!DBUser) message.reply(`${user.tag} is not apart of Cheems Media!`)
-        if(DBUser.dmOpt === false) return('This user has there DMs Disabled!')
-
+        
+        if(DBUser.dmOpt === false) return('This user has there DMs')
         if(DBUser.blocked.some(id => id === message.author.id)) return message.reply('you cannot Message this user!')
 
         let Dmessage = args.splice(1).join(' ');
