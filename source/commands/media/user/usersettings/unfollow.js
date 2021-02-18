@@ -16,11 +16,8 @@ module.exports = {
         
         if(!follower.follows.includes(user.id)) return message.reply('This user is not followed!')
 
-        let follow = { follows: user.id }
-        let following = { following: message.author.id }
-
-        await client.DBUser.findByIdAndUpdate(message.author.id, { $pull: { follows: follow.follows } }, { new: true, upsert: true });
-        await client.DBUser.findByIdAndUpdate(user.id, { $pull: { followers: following.following }, new: true, upsert: true });
+        await client.DBUser.findByIdAndUpdate(message.author.id, { $pull: { follows: user.id } }, { new: true, upsert: true });
+        await client.DBUser.findByIdAndUpdate(user.id, { $pull: { followers: message.author.id }, new: true, upsert: true });
         try {
             await user.send(` ${message.author.tag} has unfollowed you!`)
             await message.reply(`Congrats! you unfollowed ${user.id}`)

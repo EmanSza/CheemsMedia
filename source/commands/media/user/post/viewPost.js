@@ -22,31 +22,15 @@ module.exports = {
         // return console.log(post)
         //const user = await client.users.fetch(post.author);
         let DBPost = await client.DBPost.findById(postID);
-        if (!DBPost) {
-            const fetch = await client.DBPost.findById(postID);
-            // When testing when making the 1st argument into a ID got a id of null pushing into dev branch
-            DBPost = {}
-            DBPost['_id'] = fetch._id
-            DBPost['title'] = fetch.title
-            DBPost['description'] = fetch.description
-            DBPost['author'] = fetch.author
-            DBPost['image'] = fetch.image
-          }
-          let post = {
-            _id: DBPost._id,
-            title: DBPost.title,
-            description: DBPost.description,
-            author: DBPost.author,
-            image: DBPost.image
-        }
+        if(!DBPost) return ('I Could not find a post!')
 
         const embed = new MessageEmbed()
         .setColor('RANDOM')
-        .setTitle(post.title)
-        .setDescription(post.description)
-        .setFooter(post.author);
+        .setTitle(DBPost.title)
+        .setDescription(DBPost.description)
+        .setFooter(DBPost.author);
 
-        if (post.image.toLowerCase() !== 'none') embed.setImage(post.image);
+        if (DBPost.image.toLowerCase() !== 'none') embed.setImage(DBPost.image);
 
         message.channel.send(embed)
     }

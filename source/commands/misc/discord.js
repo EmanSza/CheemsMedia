@@ -1,5 +1,4 @@
-const { PREFIX, MONGOURI} = require('../../../config/botconfig.json');
-const mongoose = require('mongoose')
+const { PREFIX } = require('../../../config/botconfig.json');
 // Change DIR if needed
 
 module.exports = {

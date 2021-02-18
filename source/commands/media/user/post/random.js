@@ -11,6 +11,7 @@ module.exports = {
     execute: async function(client, message, args) {
         let posts = await client.DBPost.find({});
         let post = posts.random()
+        if(post.checked != true) await client.DBPost.find({});
 
         // return console.log(post)
         const user = await client.users.fetch(post.author);

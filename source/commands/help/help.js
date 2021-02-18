@@ -1,4 +1,4 @@
-const PREFIX = require('../../../config/botconfig.json').PREFIX;
+const {PREFIX ,BOTADMINS, Developers } = require('../../../config/botconfig.json').PREFIX;
 const { MessageEmbed } = require("discord.js");
 
 
@@ -13,7 +13,6 @@ module.exports = {
 
     execute: async function (client, message, args) {
         if (!args.length) {
-
             let AwEmbed = new MessageEmbed()
                 .setTitle("Help Commands have Been Sent!")
                 .setColor("RANDOM")
@@ -29,7 +28,8 @@ module.exports = {
                     { name: "**Post**", value: "`post` post a image\n`totalpost` See all the post of a user!\n`viewpost` View a Certain post by ID\n`deletepost` Delete one of your posts!!\n`random` View a Random post!\n`editdescription` Edit a post description!", inline: true },
                     { name: "**Guild**", value: "`channelfeed` Set the Guilds Feed\n`feeduser` Make the Guild Follow a user!\n`unfeedchannel` unSet the Guilds Feed\n`unfeeduser` Make the Guild unFollow a user!\n", inline: true },
                     { name: "**User**", value: "`signup` Create a Cheems Media Account!\n`block` Block a user!\n`unblock` unblock a user!\n`follow` Follow a user!\n`unfollow` unFollow a user!\n`directmessage` Message a user!\n", inline: true },
-                    { name: "**Profile**", value: "`Profile` View yours or a users Profile!\n`setColor` See set your profiles color!\n`setbio`Set your profiles description!\n", inline: true }
+                    { name: "**Profile**", value: "`Profile` View yours or a users Profile!\n`setColor` See set your profiles color!\n`setbio`Set your profiles description!\n", inline: true },
+                    { name: "**Bot Admin**", value: "`blacklist` ban a user!!\n`whitelist` unban a user!!\n`verify` make a user Verified!!\n`check` make sure a post is SFW and does not break our guidelines\n", inline: true }
                 )
                 try{
                 await message.author.send(MIEmbed)
