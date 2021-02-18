@@ -12,11 +12,13 @@ module.exports = {
   cooldown: 0,
 
   execute: async function (client, message, args) {
+    let DBAuthor = await client.DBUser.findById(message.author.id);
+    if (!DBAuthor) return message.reply('Please sign up using the signup command')
     let user = client.users.cache.get(args[0]) || message.mentions.users.first();
     if (!user) user = message.author
 
     let DBUser = await client.DBUser.findById(user.id);
-    if (!DBUser) return message.reply('Please sign up using the signup command\nif you are signed up if your mentioning someone they have not Opted in!')
+    if (!DBUser) return message.reply(`We Cannot find a user with the ID ${user.id}`)
 
     const profile = new MessageEmbed()
       .setTitle(user.tag)
