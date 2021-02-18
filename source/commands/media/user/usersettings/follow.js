@@ -15,14 +15,12 @@ module.exports = {
         let user = client.users.cache.get(args[0]) || message.mentions.users.first();
         if (user.id === message.author.id) return message.reply('You cannot follow yourself');
         if (!user) return message.reply('You must give me a users ID!')
-
-        let followInfo = { following: message.author.id, follows: user.id }
         
         const result = await client.DBUser.findById(message.author.id)
         if (result.follows.includes(user.id)) return message.channel.send('You are already following this user')
 
-        await client.DBUser.findByIdAndUpdate(message.author.id, { $push: { follows: followInfo.follows } }, { new: true, upsert: true });
-        await client.DBUser.findByIdAndUpdate(user.id, { $push: { followers: followInfo.following }, new: true, upsert: true });
+        await client.DBUser.findByIdAndUpdate(message.author.id, { $push: { follows: user.id } }, { new: true, upsert: true });
+        await client.DBUser.findByIdAndUpdate(user.id, { $push: { followers: message.author.id }, new: true, upsert: true });
         try {
             await user.send(`${message.author.tag} has Followed you!`)
             await message.reply(`Congrats! you followed ${user.tag}`)

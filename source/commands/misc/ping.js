@@ -1,4 +1,4 @@
-const PREFIX = require('../../../config/botconfig.json').PREFIX;
+const { PREFIX } = require('../../../config/botconfig.json');
 // Change DIR if needed
 
 module.exports = {
@@ -14,7 +14,7 @@ module.exports = {
         message.reply('Calculating ping...').then((resultMessage) => {
             const ping = resultMessage.createdTimestamp - message.createdTimestamp
       
-            resultMessage.edit(`Bot latency: ${ping}, API Latency: ${client.ws.ping}`)
+            resultMessage.edit(`Bot latency: ${ping}\nAPI Latency: ${client.ws.ping}`)
           })
     }
 }

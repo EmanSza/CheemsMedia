@@ -1,6 +1,9 @@
 {
-    "TOKEN": "TOKENHERE",
-    "PREFIX": "PREFIXHERE",
-    "MONGOURI": "MONGODBURIHERE",
-    "BOTADMINS": []
+    "TOKEN": "TOKEN",
+    "PREFIX": "PREFIX",
+    "MONGOURI": "MONGOURI",
+    "BOTADMINS": ["BOTADMINSID"],
+    "Developers": [""],
+    "someServers": [""],
+    "test": ""
 }

@@ -2,7 +2,7 @@ const PREFIX = require('../../../../../config/botconfig.json').PREFIX;
 // Change DIR if needed
 
 module.exports = {
-    name: "",
+    name: "unblock",
     aliases: [],
     description: "",
     usage: `\`${PREFIX}\``,
@@ -20,11 +20,9 @@ module.exports = {
         
         if (!DBUser.blocked.includes(user.id)) return message.channel.send('This user is not blocked!')
 
-        let block = { blocked: user.id }
-
-        await client.DBUser.findByIdAndUpdate(message.author.id, { $pull: { blocked: block.blocked } }, { new: true, upsert: true });
+        await client.DBUser.findByIdAndUpdate(message.author.id, { $pull: { blocked: user.id } }, { new: true, upsert: true });
         try {
-          message.reply(`I have blocked ${user.tag}`)
+          message.reply(`I have unblocked ${user.tag}`)
         } catch (err) {
             console.log(err);
             message.reply(`Error!\nPlease Contact an Admin about this`)

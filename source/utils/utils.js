@@ -195,13 +195,22 @@ function randomRange(min, max) {
 function delay(ms) {
     return new Promise(resolve => setTimeout(resolve, ms))
 }
-async function DMfeed(message1, author, message2, client){
-    const follower = await client.DBUser.findById(message1)
-    
+async function DMfeed(poster, title, description, image, client){
+    const author = client.users.cache.get(poster)
+    const follower = await client.DBUser.findById(poster)
+    if(!follower) return;
         for(const followers of follower.followers){
-            client.users.cache.get(followers).send(`**${author}** Made a new post!`)
+            const embed = new MessageEmbed()
+            .setAuthor(author.tag, author.displayAvatarURL({dynamic: true}))
+            .setTitle(title)
+            .setColor("RANDOM")
+            .setFooter(client.users.cache.get(followers).tag, client.users.cache.get(followers).displayAvatarURL({dynamic: true}))
+            .setDescription(description)
+            if(image.toLowerCase() !== 'none') embed.setImage(`${image}`)
             
-            client.users.cache.get(followers).send(message2)
+            client.users.cache.get(followers).send(`**${author.tag}** Made a new post!`)
+            
+            client.users.cache.get(followers).send(embed)
         }
 }
 async function ChannelFeed(author, client, message){
@@ -215,7 +224,27 @@ async function ChannelFeed(author, client, message){
         
     }
 }
+async function staffFeed(poster, title, description, image, client, _id){
+    const channel = client.channels.cache.get('811596791597236264')
+    const author = client.users.cache.get(poster)
+    const embed = new MessageEmbed()
+    .setAuthor(author.tag, author.displayAvatarURL({dynamic: true}))
+    .setTitle(title)
+    .setColor("RANDOM")
+    .setFooter(`POST ID: ${_id}`)
+    .setDescription(description)
+    if(image.toLowerCase() !== 'none') embed.setImage(`${image}`)
+
+    
+    channel.send(`${author.tag} Posted` + embed)
+}
+
+async function databaseCheck(client, message, myCall) {
+    let DBUser = await client.DBUser.findById(message.author.id);
+    if (!DBUser) return message.reply('You must signup using the signup command!');
+}
 module.exports = {
     processArguments, blacklist, whitelist, paginate,
-    getReply, randomRange, delay, DMfeed, ChannelFeed
+    getReply, randomRange, delay, DMfeed, ChannelFeed,
+    databaseCheck
 }

@@ -18,7 +18,6 @@ module.exports = {
         if (user.id === message.author.id) return message.reply('You cannot block yourself');
         if (!user) return message.reply('You must give me a users ID!')
 
-
         await client.DBUser.findByIdAndUpdate(message.author.id, { $push: { blocked: user.id } }, { new: true, upsert: true });
         try {
             message.reply(`I have blocked ${user.tag}`)

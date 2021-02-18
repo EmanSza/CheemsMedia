@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 const chalk = require('chalk');
-const { PREFIX, BOTADMINS} = require('../../../config/botconfig.json');
-const { blacklist, whitelist } = require('../../utils/utils')
+const { PREFIX, BOTADMINS} = require('../../../../config/botconfig.json');
+const { blacklist, whitelist } = require('../../../utils/utils')
 
 const client = new Discord.Client({disableEveryone: true});
 // inside the async execute
@@ -13,9 +13,11 @@ module.exports = {
     examples: "",
     cooldown: 0,
     canNotDisable: false,
+    devOnly: false,
+    adminOnly: true,
+    someServersOnly: false,
     
     execute: async function(client, message, args) {
-        if (!BOTADMINS.includes(message.author.id)) return; 
 
          const user = message.mentions.users.first()
          if(!user) return message.reply('You didn\'t mention anyone!');

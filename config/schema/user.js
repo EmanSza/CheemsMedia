@@ -33,6 +33,14 @@ const userSchema = Schema({
     bio: {
         type: String,
         default: 'A User Description'
+    },
+    verified: {
+        type: Boolean,
+        default: false
+    },
+    dmOpt: {
+        type: Boolean,
+        default: true
     }
 });
 

@@ -13,26 +13,30 @@ module.exports = {
         let DBUser = await client.DBUser.findById(message.author.id);
         if (!DBUser) return message.reply('You must signup using the signup command!');
        
-        message.channel.send(`${message.author.tag}, what should be the title of the post?`);
-
+        message.channel.send(`${message.author.tag}, what should be the title of the post? **You can type \`cancel\` any time to stop it**`);
         let title = await getReply(message, { time: 60000 });
         if (!title) return message.channel.send(`${message.author.tag}, times up! Try again.`);
-
+        if (title.content.length > 75) return message.reply('Your title cannot go above 75 characters')
+        if(title.content.toLowerCase() == 'cancel') return
         message.channel.send(`${message.author.tag}, what should be the description of the post?`);
         let description = await getReply(message, { time: 120000 });
         if (!description) return message.channel.send(`${message.author.tag}, times up! Try again.`);
-
-        message.channel.send(`${message.author.tag}, do you want to add an image?`);
+        if (description.content.length > 150) return message.reply('Your description cannot go above 150 characters')
+        if(description.content.toLowerCase() == 'cancel') return
+        message.channel.send(`${message.author.tag}, if you want to add a image send it! if not respond with **none**`);
         let image = await getReply(message, { time: 60000, type: 'image' });
+        let regex = (/(https?:\/\/)?(www\.)?(discord\.(gg|io|me|li)|discordapp\.com\/attachments)\/.+[a-z]/g)
+        if(image.content.toLowerCase() == 'cancel') return
         if(image.attachments.size > 0)  image = image.attachments.first().url
-        else if(!image.content.toLowerCase().includes('none') && !image.content.toLowerCase().includes('https://')) return message.reply('You message does not include none or a image link!') 
+        else if(image.content.toLowerCase() != 'none' && !image.content.toLowerCase().includes(regex.test(image.content))) return message.reply('You message does not include none or a image link!') 
         
         let post = {
             _id: message.id,
             author: message.author.id,
             title: title.content,
             description: description.content,
-            image: image.content || image
+            image: image.content || image,
+            checked: false
         }
 
         await client.DBUser.findByIdAndUpdate(message.author.id, { $push: { posts: post._id } }, { new: true, upsert: true });
@@ -48,17 +52,14 @@ module.exports = {
         .setTitle(title)
         .setDescription(description)
         .setColor("RANDOM")
-        if(post.image != 'none') feedEmbed.setImage(image)
+        if(post.image.toLowerCase() != 'none') feedEmbed.setImage(image)
         // This will DM a Follower if the User Posted a message!
-        const embed = new MessageEmbed()
-            .setAuthor(message.author.tag, message.author.displayAvatarURL({dynamic: true}))
-            .setTitle(title)
-            .setColor("RANDOM")
-            .setFooter(client.users.cache.get(followers).tag, client.users.cache.get(followers).displayAvatarURL({dynamic: true}))
-            .setDescription(description)
-            if(image.content.toLowerCase() !== 'none') embed.setImage(`${image}`)
-        DMfeed(message.author.id, message.author.tag, embed, message.client)
+        
+        DMfeed(message.author.id, title.content, description.content, post.image.toLowerCase(), message.client)
+      
         //this will send a message to feed channels
-       ChannelFeed(message.author.id, message.client, feedEmbed)
+        ChannelFeed(message.author.id, message.client, feedEmbed)
+        //this will send all posts to a Cheems media channel to check if the message is allowed
+        staffFeed(message.author.id, title.content, description.content, post.image.toLowerCase(), message.client, post._id)
     }
 }
