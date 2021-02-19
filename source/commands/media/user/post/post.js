@@ -25,7 +25,7 @@ module.exports = {
         if(description.content.toLowerCase() == 'cancel') return
         message.channel.send(`${message.author.tag}, if you want to add a image send it! if not respond with **none**`);
         let image = await getReply(message, { time: 60000, type: 'image' });
-        let regex = (/(https?:\/\/)?(www\.)?(discord\.(gg|io|me|li)|discordapp\.com\/attachments)\/.+[a-z]/g)
+        let regex = (/(https?:\/\/)?(www\.)?(discord\.(gg|io|me|li)|discordapp\.com\/?)\/.+[a-z]/g)
         if(image.content.toLowerCase() == 'cancel') return
         if(image.attachments.size > 0)  image = image.attachments.first().url
         else if(image.content.toLowerCase() != 'none' && !image.content.toLowerCase().includes(regex.test(image.content))) return message.reply('You message does not include none or a image link!') 
