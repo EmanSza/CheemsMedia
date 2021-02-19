@@ -1,5 +1,5 @@
 const PREFIX = require('../../../../../config/botconfig.json').PREFIX;
-const { getReply, DMfeed, ChannelFeed } = require('../../../../utils/utils')
+const { getReply, DMfeed, ChannelFeed, staffFeed } = require('../../../../utils/utils')
 const {MessageEmbed} = require('discord.js')
 // Change DIR if needed
 

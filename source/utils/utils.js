@@ -246,5 +246,5 @@ async function databaseCheck(client, message, myCall) {
 module.exports = {
     processArguments, blacklist, whitelist, paginate,
     getReply, randomRange, delay, DMfeed, ChannelFeed,
-    databaseCheck
+    databaseCheck, staffFeed
 }
