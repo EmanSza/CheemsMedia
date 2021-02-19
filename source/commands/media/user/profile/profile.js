@@ -32,7 +32,7 @@ module.exports = {
         { name: "Join Date", value: DBUser.joindate || 'Never Joined', inline: false },
         // { name: "Following", value: follows || 'None', inline: false },
       )
-      .setColor(ProfileColor)
+      .setColor(DBUser.color)
       .setThumbnail(user.displayAvatarURL())
     try {
       message.channel.send(profile)
