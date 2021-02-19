@@ -29,9 +29,10 @@ module.exports = {
         { name: "Total Follows", value: DBUser.follows.length || '0', inline: true },
         { name: "Total Followers", value: DBUser.followers.length || 'None', inline: true },
         { name: "Verifed:", value: DBUser.verified || 'false', inline: true },
+        { name: "DMs Open:", value: DBUser.dmOpted || 'Unknown', inline: true },
         { name: "Join Date", value: DBUser.joindate || 'Never Joined', inline: false },
       )
-      .setColor(ProfileColor)
+      .setColor(DBUser.color)
       .setThumbnail(user.displayAvatarURL())
     try {
       message.channel.send(profile)
