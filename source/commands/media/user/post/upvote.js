@@ -12,9 +12,13 @@ module.exports = {
     cooldown: 0,
 
     execute: async function(client, message, args) {
-      message.channel.send('Give me a post id!')
-        let postId = await getReply(message, { time: 30000} )
-        if(!postId) return message.reply('We need the ID of a post!')
+      let postID = args[0];
+      if (!postID) {
+      await message.channel.send('Please send me the ID');
+      const reply = await getReply(message, { time: 30000});
+      if (reply && reply.content) postID = reply.content;
+      else return message.channel.send('I need a valid ID')
+      }
 
         let DBPost = await client.DBPost.findById(postId.content)
         if(!DBPost) return(`Could not Fetch a post with the id ${postId.content}`)
