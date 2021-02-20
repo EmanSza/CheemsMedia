@@ -9,6 +9,7 @@ module.exports = {
     examples: `\`${PREFIX}ping\``,
     perms: [],
     cooldown: 0,
+    disabled: false,
 
     execute: async function(client, message, args) {
         message.reply('Calculating ping...').then((resultMessage) => {

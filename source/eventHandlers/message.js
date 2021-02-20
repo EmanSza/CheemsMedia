@@ -1,7 +1,7 @@
 const { processArguments } = require("../utils/utils")
 const { Collection } = require("discord.js")
 const cooldowns = new Collection();
-const { PREFIX, BOTADMINS, Developers} = require('../../config/botconfig.json')
+const { PREFIX, BOTADMINS, Developers, someServers} = require('../../config/botconfig.json')
 
 module.exports = async (client, message) => {
     if (message.author.bot || message.channel.type === 'dm' || client.blacklistCache.has(message.author.id)) return;
@@ -16,6 +16,8 @@ module.exports = async (client, message) => {
     if (!command) return;
     if(command.adminOnly && !BOTADMINS.includes(message.author.id)) return;
     if(command.devOnly && !Developers.includes(message.author.id)) return;
+    if(command.someServers && !someServers.includes(message.guild.id)) return;
+    if(command.disabled === true) return message.reply('This Command is currently disabled!')
 
 
 
