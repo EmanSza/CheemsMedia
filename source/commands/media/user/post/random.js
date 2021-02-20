@@ -29,14 +29,20 @@ module.exports = {
         let reply = await getReply(message, { time: 30000 })
         if (!reply) return;
         if (reply.content.toLowerCase() === '!up') {
-            await client.DBPost.findByIdAndUpdate(post._id, { $inc: { upvotes: 1 } }, { new: true, upsert: true });
-            await client.DBUser.findByIdAndUpdate(post.author, { $inc: { cheems: 1 } }, { new: true, upsert: true });
-            message.reply('Cheems Given! 😊')
-        }
-        else if (reply.content.toLowerCase() === '!down') {
-            await client.DBPost.findByIdAndUpdate(post._id, { $inc: { downvotes: 1 } }, { new: true, upsert: true });
-            await client.DBUser.findByIdAndUpdate(post.author, { $inc: { cheems: -1 } }, { new: true, upsert: true });
-            message.reply('Cheems Taken! 😢')
-        }
+            if(DBPost.cheemGivers.includes(message.author.id)) return message.reply('You have already given Cheems to this post');
+            if(DBPost.cheemTakers.includes(message.author.id)) { await client.DBPost.findByIdAndUpdate(DBPost._id, { $pull: { cheemTakers: message.author.id } }, { new: true, upsert: true}); } 
+              await client.DBPost.findByIdAndUpdate(DBPost._id, { $inc: { upvotes: 1 } }, { new: true, upsert: true });
+              await client.DBUser.findByIdAndUpdate(DBPost.author, { $inc: { cheems: 1 } }, { new: true, upsert: true });
+              await client.DBPost.findByIdAndUpdate(DBPost._id, { $push: { cheemGivers: message.author.id } }, { new: true, upsert: true});
+              message.reply('Cheems Given! 😊')
+          }
+          else if (reply.content.toLowerCase() === '!down') {
+            if(DBPost.cheemTakers.includes(message.author.id)) return message.reply('You have already taken Cheems to this post');
+            if(DBPost.cheemGivers.includes(message.author.id)) { await client.DBPost.findByIdAndUpdate(DBPost._id, { $pull: { cheemGivers: message.author.id } }, { new: true, upsert: true}); } 
+              await client.DBPost.findByIdAndUpdate(DBPost._id, { $inc: { downvotes: 1 } }, { new: true, upsert: true });
+              await client.DBUser.findByIdAndUpdate(DBPost.author, { $inc: { cheems: -1 } }, { new: true, upsert: true });
+              await client.DBPost.findByIdAndUpdate(DBPost._id, { $push: { cheemTakers: message.author.id } }, { new: true, upsert: true});
+              message.reply('Cheems Taken! 😢')
+          }
     }
 }

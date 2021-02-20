@@ -20,6 +20,14 @@ const postSchema = Schema({
         type: Boolean,
         default: false
     },
+    cheemGivers: {
+        type: [String],
+        default: []
+    },
+    cheemTakers: {
+        type: [String],
+        default: []
+    },
     comments: commentSchema
 })
 
