@@ -9,7 +9,7 @@ module.exports = {
   usage: `\`See your profile\``,
   examples: `\`${PREFIX}profile\``,
   perms: [],
-  cooldown: 0,
+  cooldown: 20,
 
   execute: async function (client, message, args) {
     let DBAuthor = await client.DBUser.findById(message.author.id);

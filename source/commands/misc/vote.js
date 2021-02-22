@@ -9,7 +9,7 @@ module.exports = {
     usage: `\`${PREFIX}\``,
     examples: `\`${PREFIX}\``,
     perms: [],
-    cooldown: 0,
+    cooldown: 5,
     devOnly: false,
     adminOnly: false,
     someServers: false,

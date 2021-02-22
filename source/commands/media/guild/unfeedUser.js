@@ -6,7 +6,7 @@ module.exports = {
     description: "Set a user when they post a there's a notification on channel",
     usage: `\`${PREFIX}follow\``,
     perms: ['MANAGE_CHANNELS'],
-    cooldown: 0,
+    cooldown: 10,
 
     execute: async function (client, message, args) {
         const guild = await client.DBGuild.findById(message.guild.id)

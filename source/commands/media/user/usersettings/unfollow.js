@@ -6,7 +6,7 @@ module.exports = {
     name: "unfollow",
     description: "unfollow Someone",
     usage: `\`${PREFIX}follow\``,
-    cooldown: 0,
+    cooldown: 10,
 
     execute: async function (client, message, args) {
         let user = client.users.cache.get(args[0]) || message.mentions.users.first();

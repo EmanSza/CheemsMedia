@@ -6,7 +6,7 @@ module.exports = {
     description: "Set a follow channel",
     usage: `\`${PREFIX}follow\``,
     perms: ['MANAGE_CHANNELS'],
-    cooldown: 0,
+    cooldown: 10,
 
     execute: async function (client, message, args) {
         const channel = message.mentions.channels.first() || message.guild.channels.cache.get(args[0])

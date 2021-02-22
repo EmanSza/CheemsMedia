@@ -6,7 +6,7 @@ module.exports = {
     name: "follow",
     description: "Follow Someone",
     usage: `\`${PREFIX}follow\``,
-    cooldown: 0,
+    cooldown: 10,
 
     execute: async function (client, message, args) {
         let DBUser = await client.DBUser.findById(message.author.id);

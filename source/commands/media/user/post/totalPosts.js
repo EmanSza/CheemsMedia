@@ -9,9 +9,11 @@ module.exports = {
     usage: `\`${PREFIX}\``,
     examples: `\`${PREFIX}\``,
     perms: [],
-    cooldown: 0,
+    cooldown: 6,
 
     execute: async function (client, message, args) {
+        let DBAuthor = await client.DBUser.findById(message.author.id);
+        if (!DBAuthor) return message.reply('Please use the Signup command!')
 
        let user = client.users.cache.get(args[0]) || message.mentions.users.first();
         if (!user) user = message.author;

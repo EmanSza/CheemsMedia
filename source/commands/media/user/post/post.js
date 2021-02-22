@@ -7,7 +7,7 @@ module.exports = {
     name: "post",
     description: "",
     usage: `\`${PREFIX}post\``,
-    cooldown: 0,
+    cooldown: 20,
 
     execute: async function(client, message, args) {
         let DBUser = await client.DBUser.findById(message.author.id);

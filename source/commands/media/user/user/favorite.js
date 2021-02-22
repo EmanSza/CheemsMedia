@@ -9,7 +9,7 @@ module.exports = {
     examples: `\`${PREFIX}\``,
     perms: [],
     devOnly: true,
-    cooldown: 0,
+    cooldown: 10,
 
     execute: async function(client, message, args) {
         let DBAuthor = await client.DBUser.findById(message.author.id);

@@ -9,7 +9,7 @@ module.exports = {
     usage: `\`${PREFIX}\``,
     examples: `\`${PREFIX}\``,
     perms: [],
-    cooldown: 0,
+    cooldown: 5,
 
     execute: async function (client, message, args) {
         let DBUser = await client.DBUser.findById(message.author.id)

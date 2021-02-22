@@ -7,6 +7,7 @@ module.exports = {
     name: "random",
     description: "Get a random post",
     usage: `\`${PREFIX}random\``,
+    cooldown: 5,
 
     execute: async function(client, message, args) {
         let posts = await client.DBPost.find({});
