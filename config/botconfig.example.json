@@ -1,6 +1,6 @@
 {
     "TOKEN": "TOKEN",
-    "PREFIX": "PREFIX",
+    "PREFIX": "!",
     "MONGOURI": "MONGOURI",
     "BOTADMINS": ["BOTADMINSID"],
     "Developers": [""],

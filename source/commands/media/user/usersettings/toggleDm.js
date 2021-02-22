@@ -17,7 +17,7 @@ module.exports = {
         if(DBUser.dmOpt === true)  {
             await client.DBUser.findByIdAndUpdate(message.author.id, { $set: { dmOpt: false  } }, { new: true, upsert: true });
             message.reply('I have disabled you\`re DMs')
-        } else /* If dmOpt is true*/ {
+        } else /* If dmOpt is false */ {
             await client.DBUser.findByIdAndUpdate(message.author.id, { $set: { dmOpt: true  } }, { new: true, upsert: true });
             message.reply('I have enabled you\`re DMs')
         }

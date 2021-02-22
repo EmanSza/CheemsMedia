@@ -12,8 +12,8 @@ module.exports = {
     cooldown: 0,
     devOnly: false,
     adminOnly: false,
-    someServers: false,
-    disabled: true,
+    someServers: true,
+    disabled: false,
 
     execute: async function (client, message, args) {
         const channel = '812529308811132989'
