@@ -21,7 +21,7 @@ module.exports = {
         let DBUser = await client.DBUser.findById(user.id)
         if(!DBUser) message.reply(`${user.tag} is not apart of Cheems Media!`)
         
-        if(DBUser.dmOpt === false) return('This user has there DMs')
+        if(DBUser.dmOpt === false) return message.reply('This user has there disabled DMs')
         if(DBUser.blocked.some(id => id === message.author.id)) return message.reply('you cannot Message this user!')
 
         let Dmessage = args.splice(1).join(' ');

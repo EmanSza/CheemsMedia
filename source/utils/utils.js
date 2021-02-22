@@ -231,18 +231,19 @@ async function staffFeed(poster, title, description, image, client, _id){
     .setAuthor(author.tag, author.displayAvatarURL({dynamic: true}))
     .setTitle(title)
     .setColor("RANDOM")
-    .setFooter(`POST ID: ${_id}`)
+    .setFooter(`POST ID: ${_id} posted by: ${author.tag}`)
     .setDescription(description)
     if(image.toLowerCase() !== 'none') embed.setImage(`${image}`)
 
     
-    channel.send(`${author.tag} Posted` + embed)
+    channel.send(embed)
 }
 
-async function databaseCheck(client, message, myCall) {
+async function databaseCheck(client, message,) {
     let DBUser = await client.DBUser.findById(message.author.id);
     if (!DBUser) return message.reply('You must signup using the signup command!');
 }
+
 module.exports = {
     processArguments, blacklist, whitelist, paginate,
     getReply, randomRange, delay, DMfeed, ChannelFeed,

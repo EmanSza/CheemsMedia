@@ -1,4 +1,4 @@
-const PREFIX = require('../../config/botconfig.json').PREFIX;
+const { PREFIX } = require('../../config/botconfig.json')
 // Change DIR if needed
 
 module.exports = {
@@ -13,7 +13,8 @@ module.exports = {
     cooldown: 0,
     devOnly: false,
     adminOnly: false,
-    someServersOnly: false,
+    someServers: false,
+    disabled: false,
 
     execute: async function(client, message, args) {
 
