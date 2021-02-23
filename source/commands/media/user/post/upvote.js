@@ -20,8 +20,8 @@ module.exports = {
       else return message.channel.send('I need a valid ID')
       }
 
-        let DBPost = await client.DBPost.findById(postId.content)
-        if(!DBPost) return(`Could not Fetch a post with the id ${postId.content}`)
+        let DBPost = await client.DBPost.findById(postID.content)
+        if(!DBPost) return(`Could not Fetch a post with the id ${postID.content}`)
 
           if(DBPost.cheemGivers.includes(message.author.id)) return message.reply('You have already taken Cheems to this post');
           if(DBPost.cheemTakers.includes(message.author.id)) { await client.DBPost.findByIdAndUpdate(DBPost._id, { $pull: { cheemTakers: message.author.id } }, { new: true, upsert: true}); } 
