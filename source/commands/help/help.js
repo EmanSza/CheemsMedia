@@ -21,7 +21,7 @@ module.exports = {
                 .setURL("https://discord.gg/jRnTbRPjdr")
                 .setColor('#FD0061')
                 .setTitle("Help Menu")
-                .setDescription(`Use \`!help [command name]\` to get more info on a specific command, for example: \`!help ping\` \n Dont Forget to use the \`signup\` command to signup for our bot and read our [Terms Of Service](https://cheemsmedia.xyz/tos`)
+                .setDescription(`Use \`!help [command name]\` to get more info on a specific command, for example: \`!help ping\` \n Dont Forget to use the \`signup\` command to signup for our bot and read our [Terms Of Service](https://cheemsmedia.xyz/tos)`)
                 .setThumbnail(client.user.displayAvatarURL({ dynamic: true, size: 2048 }))
                 .addFields(
                     { name: "**Misc**", value: "`ping` See how fast the bot is\n`info` See Bot Information\n`up/down` After doing the random command do up or down to upvote/downvote\n `vote` Vote for us in the WOK Comp", inline: true },
