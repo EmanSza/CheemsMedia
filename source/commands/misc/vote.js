@@ -35,7 +35,7 @@ module.exports = {
             })
         if (data.success) {
             message.reply('Thank you for voting Cheems')
-            channel.send(`${user.tag} has voted!`)
         }
+         channel.send(`${user.tag} has or tried voted!`)
     }
 }
