@@ -6,6 +6,8 @@ const { PREFIX, BOTADMINS, Developers, someServers} = require('../../config/botc
 module.exports = async (client, message) => {
     if (message.author.bot || message.channel.type === 'dm' || client.blacklistCache.has(message.author.id)) return;
 
+    await client.DBGuild.findByIdAndUpdate(message.guild.id, {new: true, upsert: true})
+
     if (!message.content.startsWith(PREFIX)) return;
 
     let msgargs = message.content.substring(PREFIX.length).split(new RegExp(/\s+/));
@@ -18,11 +20,6 @@ module.exports = async (client, message) => {
     if(command.devOnly && !Developers.includes(message.author.id)) return;
     if(command.someServers && !someServers.includes(message.guild.id)) return;
     if(command.disabled === true) return message.reply('This Command is currently disabled!')
-
-    if (command.devOnly && !Developers.includes(message.author.id)) return;
-    if (command.AdminOnly && !BOTADMINS.includes(message.author.id)) return;
-    if (command.someServersOnly && !someServers.includes(message.guild.id)) return;
-
 
     if (command.perms && !message.member.hasPermission(command.perms)) return;
     
