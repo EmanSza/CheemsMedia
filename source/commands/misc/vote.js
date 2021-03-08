@@ -13,7 +13,7 @@ module.exports = {
     devOnly: false,
     adminOnly: false,
     someServers: false,
-    disabled: false,
+    disabled: true,
 
     execute: async function (client, message, args) {
         const channel = '812529308811132989'

@@ -15,7 +15,7 @@ const client = new Discord.Client()
 
 //Cient Ready Statement
 client.on('ready', () => {
-    log(chalk.red(`<${client.user.tag}>`) + (' ') + chalk.blue(`Logged in!`))
+    log(chalk.red(`<${client.user.tag}>`) + (' ') + chalk.blue(`Logged in! ${client.guilds.cache.size}`))
     client.user.setPresence({ activity: {name: '!help', type: 'LISTENING'}})
 });
 
