@@ -231,7 +231,7 @@ async function staffFeed(poster, title, description, image, client, _id){
     .setAuthor(author.tag, author.displayAvatarURL({dynamic: true}))
     .setTitle(title)
     .setColor("RANDOM")
-    .setFooter(`POST ID: ${_id} posted by: ${author.tag}`)
+    .setFooter(`POST ID: ${_id} POSTER ID: ${author.id}`)
     .setDescription(description)
     if(image.toLowerCase() !== 'none') embed.setImage(`${image}`)
 
