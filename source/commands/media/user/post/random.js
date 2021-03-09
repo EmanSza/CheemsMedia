@@ -11,7 +11,7 @@ module.exports = {
 
     execute: async function(client, message, args) {
         let posts = await client.DBPost.find({});
-        let post = posts.random()
+        let post = nsfwPost(message.channel, posts)
         if(post.checked != true) await client.DBPost.find({});
 
         // return console.log(post)
@@ -31,7 +31,7 @@ module.exports = {
         if (!reply) return;
         if (reply.content.toLowerCase() === '!up') {
             if(DBPost.cheemGivers.includes(message.author.id)) return message.reply('You have already given Cheems to this post');
-            if(DBPost.cheemTakers.includes(message.author.id)) { await client.DBPost.findByIdAndUpdate(DBPost._id, { $pull: { cheemTakers: message.author.id } }, { new: true, upsert: true}); } 
+            if(DBPost.cheemTakers.includes(message.author.id)) { await client.DBPost.findByIdAndUpdate(DBPost._id, { $pull: { cheemTakers: message.author.id } }, { new: true, upsert: true}); }
               await client.DBPost.findByIdAndUpdate(DBPost._id, { $inc: { upvotes: 1 } }, { new: true, upsert: true });
               await client.DBUser.findByIdAndUpdate(DBPost.author, { $inc: { cheems: 1 } }, { new: true, upsert: true });
               await client.DBPost.findByIdAndUpdate(DBPost._id, { $push: { cheemGivers: message.author.id } }, { new: true, upsert: true});
@@ -39,11 +39,24 @@ module.exports = {
           }
           else if (reply.content.toLowerCase() === '!down') {
             if(DBPost.cheemTakers.includes(message.author.id)) return message.reply('You have already taken Cheems to this post');
-            if(DBPost.cheemGivers.includes(message.author.id)) { await client.DBPost.findByIdAndUpdate(DBPost._id, { $pull: { cheemGivers: message.author.id } }, { new: true, upsert: true}); } 
+            if(DBPost.cheemGivers.includes(message.author.id)) { await client.DBPost.findByIdAndUpdate(DBPost._id, { $pull: { cheemGivers: message.author.id } }, { new: true, upsert: true}); }
               await client.DBPost.findByIdAndUpdate(DBPost._id, { $inc: { downvotes: 1 } }, { new: true, upsert: true });
               await client.DBUser.findByIdAndUpdate(DBPost.author, { $inc: { cheems: -1 } }, { new: true, upsert: true });
               await client.DBPost.findByIdAndUpdate(DBPost._id, { $push: { cheemTakers: message.author.id } }, { new: true, upsert: true});
               message.reply('Cheems Taken! 😢')
           }
     }
+}
+
+function nsfwPost(channel, posts){
+  let post = posts.random()
+  if(post.nsfw){
+    if(channel.nsfw){
+      return post
+    }
+    else if(!channel.nsfw){
+      post = nsfwPost(channel, posts)
+    }
+  }
+  return post
 }

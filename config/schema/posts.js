@@ -16,6 +16,7 @@ const postSchema = Schema({
     image: String,
     upvotes: Number,
     downvotes: Number,
+    nsfw: Boolean,
     checked: {
         type: Boolean,
         default: false
