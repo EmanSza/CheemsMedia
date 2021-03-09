@@ -3,8 +3,8 @@ const { MessageEmbed } = require('discord.js')
 // Change DIR if needed
 
 module.exports = {
-  name: "profile",
-  aliases: ["profil"],
+  name: "viewsettings",
+  aliases: ["vs"],
   description: "",
   usage: `\`See your profile\``,
   examples: `\`${PREFIX}profile\``,
@@ -16,7 +16,7 @@ module.exports = {
     let DBAuthor = await client.DBUser.findById(message.author.id);
     if (!DBAuthor) return message.reply('Please sign up using the signup command')
     let user = message.author
-    
+
     let DBUser = await client.DBUser.findById(user.id);
     if (!DBUser) return message.reply(`We Cannot find a user with the ID ${user.id}`)
     if(DBUser.dmOpt == false) let dmOpted = 'Closed'
