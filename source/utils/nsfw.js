@@ -4,7 +4,7 @@ deepai.setApiKey(NSFWKEY);
 
 module.exports = isNsfw
 
-function isNsfw (url){
+async function isNsfw (url){
   try {
       var response = await deepai.callStandardApi("nsfw-detector", { image: url});
     } catch (e) {

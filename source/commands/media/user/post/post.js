@@ -31,7 +31,7 @@ module.exports = {
         if(image.attachments.size > 0)  image = image.attachments.first().url
         else if(image.content.toLowerCase() != 'none' && !image.content.toLowerCase().includes(regex.test(image.content))) return message.reply('You message does not include none or a image link!')
 
-        var n = isNsfw(image)
+        var n = await isNsfw(image)
         let post = {
             _id: message.id,
             author: message.author.id,
