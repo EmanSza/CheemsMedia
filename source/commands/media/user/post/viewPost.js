@@ -22,7 +22,9 @@ module.exports = {
         // return console.log(post)
         //const user = await client.users.fetch(post.author);
         let DBPost = await client.DBPost.findById(postID);
-        if(!DBPost) return ('I Could not find a post!')
+        if(!DBPost) return message.reply('I Could not find a post!')
+        if(DBPost.checked && !message.channel.nsfw) return message.reply("This is a NSFW post, you can't see NSFW posts at SFW channels")
+
 
         const embed = new MessageEmbed()
         .setColor('RANDOM')
