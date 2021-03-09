@@ -50,7 +50,7 @@ module.exports = {
 
 function nsfwPost(channel, posts){
   let post = posts.random()
-  if(post.nsfw){
+  if(post.checked){
     if(channel.nsfw){
       return post
     }
