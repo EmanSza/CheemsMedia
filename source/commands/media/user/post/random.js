@@ -23,8 +23,7 @@ module.exports = {
         .setDescription(post.description)
         .setFooter(user.tag, user.displayAvatarURL({ dynamic: true }));
 
-        if (post.image !== 'none') embed.setImage(post.image);
-
+        if (post.image.toLowerCase() !== 'none') embed.setImage(post.image);
         message.channel.send(embed)
 
         let reply = await getReply(message, { time: 30000 })
