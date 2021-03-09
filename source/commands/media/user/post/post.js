@@ -1,6 +1,7 @@
 const PREFIX = require('../../../../../config/botconfig.json').PREFIX;
 const { getReply, DMfeed, ChannelFeed, staffFeed } = require('../../../../utils/utils')
 const {MessageEmbed} = require('discord.js')
+const isNsfw = require('../../../../utils/nsfw')
 // Change DIR if needed
 
 module.exports = {
@@ -12,7 +13,7 @@ module.exports = {
     execute: async function(client, message, args) {
         let DBUser = await client.DBUser.findById(message.author.id);
         if (!DBUser) return message.reply('You must signup using the signup command!');
-       
+
         message.channel.send(`${message.author.tag}, what should be the title of the post? **You can type \`cancel\` any time to stop it**`);
         let title = await getReply(message, { time: 60000 });
         if (!title) return message.channel.send(`${message.author.tag}, times up! Try again.`);
@@ -28,15 +29,16 @@ module.exports = {
         let regex = (/(https?:\/\/)?(www\.)?(discord\.(gg|io|me|li)|discordapp\.com\/?)\/.+[a-z]/g)
         if(image.content.toLowerCase() == 'cancel') return
         if(image.attachments.size > 0)  image = image.attachments.first().url
-        else if(image.content.toLowerCase() != 'none' && !image.content.toLowerCase().includes(regex.test(image.content))) return message.reply('You message does not include none or a image link!') 
-        
+        else if(image.content.toLowerCase() != 'none' && !image.content.toLowerCase().includes(regex.test(image.content))) return message.reply('You message does not include none or a image link!')
+
+        var n = await isNsfw(image)
         let post = {
             _id: message.id,
             author: message.author.id,
             title: title.content,
             description: description.content,
             image: image.content || image,
-            checked: false
+            checked: n
         }
 
         await client.DBUser.findByIdAndUpdate(message.author.id, { $push: { posts: post._id } }, { new: true, upsert: true });
@@ -47,16 +49,16 @@ module.exports = {
             console.log(err)
             message.reply(`Error!\nPlease Contact an Admin about this`)
         }
-       const feedEmbed = new MessageEmbed() 
+       const feedEmbed = new MessageEmbed()
         .setAuthor(message.author.tag)
         .setTitle(title)
         .setDescription(description)
         .setColor("RANDOM")
         if(post.image.toLowerCase() != 'none') feedEmbed.setImage(image)
         // This will DM a Follower if the User Posted a message!
-        
+
         DMfeed(message.author.id, title.content, description.content, post.image.toLowerCase(), message.client)
-      
+
         //this will send a message to feed channels
         ChannelFeed(message.author.id, message.client, feedEmbed)
         //this will send all posts to a Cheems media channel to check if the message is allowed
