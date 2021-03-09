@@ -1,5 +1,6 @@
-const deepai = require('deepai')
-deepai.setApiKey('19d6f18a-dd0a-4d2a-912f-c4b2a28ba75b');
+const deepai = require('deepai');
+const { NSFWKEY } = require('../../config/botconfig.json');
+deepai.setApiKey(NSFWKEY);
 
 module.exports = isNsfw
 
