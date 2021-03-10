@@ -19,6 +19,8 @@ module.exports = {
 
     let DBUser = await client.DBUser.findById(user.id);
     if (!DBUser) return message.reply(`We Cannot find a user with the ID ${user.id}`)
+    let dmOpted = 'Enabled'
+    if(!DBUser.dmOpt)  dmOpted = 'Disabled'
 
     const profile = new MessageEmbed()
       .setTitle(user.tag)
@@ -29,7 +31,7 @@ module.exports = {
         { name: "Total Follows", value: DBUser.follows.length || '0', inline: true },
         { name: "Total Followers", value: DBUser.followers.length || 'None', inline: true },
         { name: "Verifed:", value: DBUser.verified || 'false', inline: true },
-        { name: "DMs Open:", value: DBUser.dmOpt || 'Unknown', inline: true },
+        { name: "DMs Open:", value: dmOpted || 'Unknown', inline: true },
         { name: "Join Date", value: DBUser.joindate || 'Never Joined', inline: false },
         // { name: "Following", value: follows || 'None', inline: false },
       )
