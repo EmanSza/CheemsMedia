@@ -7,9 +7,9 @@ const chalk = require("chalk");
 const log = console.log;
 
 //File Requirements
-const { TOKEN, MONGOURI } = require(path.join(__dirname, "../config/botconfig.json"));
+const { TOKEN, MONGOURI, TOPGGTOKEN } = require(path.join(__dirname, "../config/botconfig.json"));
 const { registerCommands, registerEvents } = require(path.join(__dirname, "./utils/registry"))
-
+const InitateTopGG = require('./utils/topgg')
 // Client Statements
 const client = new Discord.Client()
 
@@ -23,6 +23,7 @@ client.on('ready', () => {
 // Async Fucktion 
 (async () => {
     client.blacklistCache = new Set()
+    InitateTopGG(client)
     await client.login(TOKEN);
     console.log(chalk.red(`<${client.user.tag}>`) + (' ') + chalk.blue('Starting up...'))
     client.commands = new Discord.Collection();

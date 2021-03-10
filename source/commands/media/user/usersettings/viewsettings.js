@@ -19,7 +19,7 @@ module.exports = {
 
     let DBUser = await client.DBUser.findById(user.id);
     if (!DBUser) return message.reply(`We Cannot find a user with the ID ${user.id}`)
-    if(DBUser.dmOpt == false) let dmOpted = 'Closed'
+    if(!DBUser.dmOpt) dmOpted = 'Closed'
     const profile = new MessageEmbed()
       .setTitle(user.tag + 'Settings')
       .addFields(
