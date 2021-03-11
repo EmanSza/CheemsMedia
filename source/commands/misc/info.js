@@ -18,7 +18,7 @@ module.exports = {
             { name: "**Board Members**", value: "`EmanSza` Founder and Developer\n`Canta` Founder and Developer\n`Spik` Developer and Owner\n`KrabbyBuckets` Website Developer and Owner\n", inline: true },
             { name: "**Developers**", value: "`Depression` Bot Developer\n", inline: true },
             { name: "**Links**", value: "`website` https://cheemsmedia.xyz\n`Discord` https://join.cheemsmedia.xyz\n`invite` https://invite.cheemsmedia.xyz\n", inline: true },
-            { name: "**Langauge**", value: "Discord.js", inline: true },
+            { name: "**Langauges**", value: "English", inline: true },
           // { name: "**Extra Embed**", value: "`` \n", inline: true },
         )
         .setColor('#FD0061')

@@ -15,27 +15,25 @@ const client = new Discord.Client()
 
 //Cient Ready Statement
 client.on('ready', () => {
-    log(chalk.red(`<${client.user.tag}>`) + (' ') + chalk.blue(`Logged in! ${client.guilds.cache.size}`))
     client.user.setPresence({ activity: {name: '!help', type: 'LISTENING'}})
-});
+}); { setTimeout(() => { log(chalk.red(`<CLIENT>`) + (' ') + chalk.blue(`Logged in`)); }, 1000 * 3)}
 
 
 // Async Fucktion 
 (async () => {
     client.blacklistCache = new Set()
     InitateTopGG(client)
-    await client.login(TOKEN);
-    console.log(chalk.red(`<${client.user.tag}>`) + (' ') + chalk.blue('Starting up...'))
+    await client.login(TOKEN).then(console.log(chalk.red(`<CLIENT>`) + (' ') + chalk.blue('Starting up...')));
     client.commands = new Discord.Collection();
-    await registerEvents(client, '../eventHandlers');
-    await registerCommands(client, '../commands');
+    await registerEvents(client, '../eventHandlers').then(log(chalk.magenta('<HANDLER>') + (' ') + chalk.blue(`Loaded Events`)));
+    await registerCommands(client, '../commands').then(log(chalk.magenta('<HANDLER>') + (' ') + chalk.blue(`Loaded Commands`)));
     //Schemas
     client.DBConfig = require('../config/schema/config')
     await mongoose.connect(MONGOURI, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
         useFindAndModify: false
-    });
+    });  { setTimeout(() => { log(chalk.cyan(`<DATABASE>`) + (' ') + chalk.blue(`Connected`)); }, 5) }
 
     client.DBUser = require('../config/schema/user.js');
     client.DBPost = require('../config/schema/posts.js');

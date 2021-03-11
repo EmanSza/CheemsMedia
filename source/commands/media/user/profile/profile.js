@@ -21,18 +21,19 @@ module.exports = {
     if (!DBUser) return message.reply(`We Cannot find a user with the ID ${user.id}`)
     let dmOpted = 'Enabled'
     if(!DBUser.dmOpt)  dmOpted = 'Disabled'
+    let Verified = `${user.tag}`
+    if(DBUser.verified) Verified = `${user.username} <:CheemVerifed:813221989544230913>`
 
     const profile = new MessageEmbed()
-      .setTitle(user.tag)
+      .setTitle(Verified)
       .addFields(
         { name: "Profile Bio", value: DBUser.bio || 'No Bio', inline: false },
         { name: "Total Posts:", value: DBUser.posts.length || 'None', inline: true },
         { name: "Total Cheems", value: DBUser.cheems || '0', inline: true },
         { name: "Total Follows", value: DBUser.follows.length || '0', inline: true },
         { name: "Total Followers", value: DBUser.followers.length || 'None', inline: true },
-        { name: "Verifed:", value: DBUser.verified || 'false', inline: true },
-        { name: "DMs Open:", value: dmOpted || 'Unknown', inline: true },
-        { name: "Join Date", value: DBUser.joindate || 'Never Joined', inline: false },
+        { name: "DM Status:", value: dmOpted || 'Unknown', inline: true },
+        { name: "Join Date", value: DBUser.joindate || 'Unknown', inline: false },
         // { name: "Following", value: follows || 'None', inline: false },
       )
       .setColor(DBUser.color)
