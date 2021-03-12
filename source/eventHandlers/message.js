@@ -12,17 +12,17 @@ module.exports = async (client, message) => {
 
     let msgargs = message.content.substring(PREFIX.length).split(new RegExp(/\s+/));
     let cmdName = msgargs.shift().toLowerCase();
-    
+
     const command = await client.commands.get(cmdName) || client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(cmdName));
 
     if (!command) return;
-    if(command.adminOnly && !BOTADMINS.includes(message.author.id)) return;
-    if(command.devOnly && !Developers.includes(message.author.id)) return;
+    if(command.adminOnly && !client.admins.includes(message.author.id)) return;
+    if(command.devOnly && !client.devs.includes(message.author.id)) return;
     if(command.someServers && !someServers.includes(message.guild.id)) return;
     if(command.disabled === true) return message.reply('This Command is currently disabled!')
 
     if (command.perms && !message.member.hasPermission(command.perms)) return;
-    
+
     const cd = command.cooldown;
     if (cd) {
         if (!cooldowns.has(command.name)) {
