@@ -19,7 +19,7 @@ client.on('ready', () => {
 }); { setTimeout(() => { log(chalk.red(`<CLIENT>`) + (' ') + chalk.blue(`Logged in`)); }, 1000 * 3)}
 
 
-// Async Fucktion 
+// Async Fucktion
 (async () => {
     client.blacklistCache = new Set()
     InitateTopGG(client)
@@ -38,9 +38,16 @@ client.on('ready', () => {
     client.DBUser = require('../config/schema/user.js');
     client.DBPost = require('../config/schema/posts.js');
     client.DBGuild = require('../config/schema/guild.js')
+    client.DBStaff = require('../config/schema/staff.js')
     //Blacklist
     const blacklistFetch = await client.DBConfig.findByIdAndUpdate('blacklist', {}, {new: true, upsert: true, setDefaultsOnInsert: true})
     client.blacklistCache = new Set(blacklistFetch.blacklisted)
+    const stafflist = await client.DBStaff.find({})
+    if (stafflist) client.stafflist = stafflist
+    client.stafflist.forEach(function (s) {
+      if (s.job == 'admin') client.admins.push(s._id)
+      else if (s.job == 'developer') client.devs.push(s._id)
+    })
 })();
 
 Array.prototype.random = function () {

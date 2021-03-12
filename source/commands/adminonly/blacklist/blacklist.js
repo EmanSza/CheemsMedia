@@ -1,10 +1,6 @@
 const Discord = require("discord.js");
 const { PREFIX, BOTADMINS, } = require('../../../../config/botconfig.json');
 const { blacklist } = require('../../../utils/utils')
-
-const client = new Discord.Client({
-    disableEveryone: true
-});
 // inside the async execute
 
 module.exports = {
