@@ -27,5 +27,9 @@ module.exports = {
 
       message.reply(`<@${message.mentions.users.first().id}> successfully registered as ${args[1]}`)
       client.stafflist = await client.DBStaff.find({})
+      client.stafflist.forEach(function (s) {
+      if (s.job == 'admin') client.admins.push(s._id)
+      else if (s.job == 'developer') client.devs.push(s._id)
+    })  
     }
 }
