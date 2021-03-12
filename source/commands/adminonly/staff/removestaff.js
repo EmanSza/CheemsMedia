@@ -14,9 +14,14 @@ module.exports = {
           await client.DBStaff.findByIdAndDelete({ _id: message.mentions.users.first().id });
             message.reply(`Staff <@${message.mentions.users.first().id}> has been removed!`)
             client.stafflist = await client.DBStaff.find({})
+            var admins = []
+            var devs = []
             client.stafflist.forEach(function (s) {
-                if (s.job == 'admin') client.admins.push(s._id)
-                else if (s.job == 'developer') client.devs.push(s._id)
+                if (s.job == 'admin') admins.push(s._id)
+                else if (s.job == 'developer') devs.push(s._id)
+            })
+            client.admins = admins
+            client.devs = devs
             })
         } catch(err) {
           message.reply(`Error!\nPlease Contact an Admin about this`)
