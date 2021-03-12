@@ -14,8 +14,8 @@ module.exports = {
       const staff = client.stafflist.filter(function(staff){
         return staff._id === message.mentions.users.first().id
       })
-      console.log(staff)
-      if (staff.name) return message.reply(`${staff.name} is already registered as ${staff.job}`)
+
+      if (staff[0].name) return message.reply(`${staff.name} is already registered as ${staff.job}`)
 
       await new client.DBStaff({
         _id: message.mentions.users.first().id,
