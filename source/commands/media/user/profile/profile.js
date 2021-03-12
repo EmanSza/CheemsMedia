@@ -30,9 +30,9 @@ module.exports = {
         { name: "Profile Bio", value: DBUser.bio || 'No Bio', inline: false },
         { name: "Total Posts:", value: DBUser.posts.length || 'None', inline: true },
         { name: "Total Cheems", value: DBUser.cheems || '0', inline: true },
-        { name: "Total Follows", value: DBUser.follows.length || '0', inline: true },
-        { name: "Total Followers", value: DBUser.followers.length || 'None', inline: true },
         { name: "DM Status:", value: dmOpted || 'Unknown', inline: true },
+        { name: "Total Followers", value: DBUser.followers.length || 'None', inline: true },
+        { name: "Total Follows", value: DBUser.follows.length || '0', inline: true },
         { name: "Join Date", value: DBUser.joindate || 'Unknown', inline: false },
         // { name: "Following", value: follows || 'None', inline: false },
       )
