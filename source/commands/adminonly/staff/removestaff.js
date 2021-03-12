@@ -22,7 +22,6 @@ module.exports = {
             })
             client.admins = admins
             client.devs = devs
-            })
         } catch(err) {
           message.reply(`Error!\nPlease Contact an Admin about this`)
         }
