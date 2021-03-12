@@ -18,7 +18,7 @@ module.exports = {
       })
       console.log(staff)
       
-      if(staff){
+      if(staff[0]){
         if (staff[0].name) return message.reply(`${staff[0].name} is already registered as ${staff[0].job}`)
       }
       await new client.DBStaff({
