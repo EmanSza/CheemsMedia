@@ -9,7 +9,7 @@ module.exports = {
     someServersOnly: true,
 
     execute: async function(client, message, args) {
-      if(message.author.id != '455831445949120535') return message.reply(`Only <@519861424017768451> can add staff`)
+      if(message.author.id != '519861424017768451' || message.author.id != '455831445949120535') return message.reply(`Only <@519861424017768451> can add staff`)
       if(!message.mentions.users.first()) return message.reply('You need to mention user for staff `!addstaff <mention> <job>` ')
       if(!args[1]) return message.reply('You need to enter job for staff `!addstaff <mention> <job>` ')
 
