@@ -16,7 +16,6 @@ module.exports = async (client, message) => {
     const command = await client.commands.get(cmdName) || client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(cmdName));
 
     if (!command) return;
-    console.log(client.admins + ' ' + client.devs)
     if(command.adminOnly && !client.admins.includes(message.author.id)) return;
     if(command.devOnly && !client.devs.includes(message.author.id)) return;
     if(command.someServers && !someServers.includes(message.guild.id)) return;
