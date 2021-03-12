@@ -11,8 +11,8 @@ module.exports = {
     execute: async function(client, message, args) {
       if(!message.mentions.users.first()) return message.reply('You need to mention user for staff `!addstaff <mention> <job>` ')
       if(!args[1]) return message.reply('You need to enter job for staff `!addstaff <mention> <job>` ')
-      const staff = client.stafflist.filter(function (staff) {
-        staff._id === message.mentions.users.first().id
+      const staff = client.stafflist.filter(function(staff){
+        return staff._id === message.mentions.users.first().id
       })
       console.log(staff)
       if (staff.name) return message.reply(`${staff.name} is already registered as ${staff.job}`)
