@@ -9,8 +9,6 @@ module.exports = {
     cooldown: 10,
 
     execute: async function (client, message, args) {
-        const guild = await client.DBGuild.findById(message.guild.id)
-        if(!guild.feedChannel) return message.reply('There\'s no channel set for this!')
         const user = message.client.users.cache.get(args[0]) ||message.mentions.users.first();
         if(!user) return message.reply('That user doesn\'t exists')
         if(!guild.followedPosters.includes(user.id)) return message.channel.send('This user is not feeded!')

@@ -14,7 +14,7 @@ module.exports = {
         let DBUser = await client.DBUser.findById(message.author.id);
         if (!DBUser) return message.reply('You must signup using the signup command!');
         
-        if(DBUser.dmOpt === true)  {
+        if(DBUser.dmOpt)  {
             await client.DBUser.findByIdAndUpdate(message.author.id, { $set: { dmOpt: false  } }, { new: true, upsert: true });
             message.reply('I have disabled you\`re DMs')
         } else /* If dmOpt is false */ {

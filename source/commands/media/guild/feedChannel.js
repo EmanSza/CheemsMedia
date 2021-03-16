@@ -10,7 +10,6 @@ module.exports = {
 
     execute: async function (client, message, args) {
         const channel = message.mentions.channels.first() || message.guild.channels.cache.get(args[0])
-        let DBUGuild = await client.DBGuild.findById(message.guild.id);
         if(!channel) return message.reply('Please provide an valid channel!')
         await client.DBGuild.findByIdAndUpdate(message.guild.id,{ $set: {feedChannel: channel.id}, new: true, upsert: true})
         message.reply('The new channel is set!')
