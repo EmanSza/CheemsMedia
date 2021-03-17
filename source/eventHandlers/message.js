@@ -21,7 +21,7 @@ module.exports = async (client, message) => {
     if(command.someServers && !someServers.includes(message.guild.id)) return;
     if(command.disabled === true) return message.reply('This Command is currently disabled!')
 
-    if (command.perms && !message.member.hasPermission(command.perms)) return;
+    if (command.perms && !message.member.hasPermission(command.perms)) return message.reply(`You are missing ${command.perms}`);
 
     const cd = command.cooldown;
     if (cd) {
