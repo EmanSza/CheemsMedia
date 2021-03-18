@@ -1,13 +1,5 @@
 const { Schema, model } = require('mongoose');
 
-const commentSchema = Schema({
-    _id: String,
-    comment: String,
-    id: String,
-    upvotes: Number,
-    downvotes: Number
-})
-
 const postSchema = Schema({
     _id: String,
     author: String,
@@ -27,8 +19,7 @@ const postSchema = Schema({
     cheemTakers: {
         type: [String],
         default: []
-    },
-    comments: commentSchema
+    }
 })
 
 module.exports = model('posts', postSchema);
