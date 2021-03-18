@@ -39,6 +39,7 @@ client.on('ready', () => {
     client.DBPost = require('../config/schema/posts.js');
     client.DBGuild = require('../config/schema/guild.js')
     client.DBStaff = require('../config/schema/staff.js')
+    client.DBComments = require('../config/schema/comments.js')
     //Blacklist
     const blacklistFetch = await client.DBConfig.findByIdAndUpdate('blacklist', {}, {new: true, upsert: true, setDefaultsOnInsert: true})
     client.blacklistCache = new Set(blacklistFetch.blacklisted)
