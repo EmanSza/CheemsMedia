@@ -31,9 +31,9 @@ module.exports = {
         if (reply.content.toLowerCase() == '!up') {
           if(post.cheemGivers.includes(message.author.id)) return message.reply('You have already gave Cheems to this post');
           if(post.cheemTakers.includes(message.author.id)) { 
-            await client.DBPost.findByIdAndUpdate(post._id, { $pull: { cheemTakers: message.author.id }, $inc: { cheems: 1 } }, { new: true, upsert: true}); 
+            await client.DBPost.findByIdAndUpdate(post._id, { $pull: { cheemTakers: message.author.id }, $inc: { cheems: 1 }, $push: { cheemGivers: message.author.id } }, { new: true, upsert: true}); 
           } else {
-            await client.DBPost.findByIdAndUpdate(post._id, { $inc: { cheems: 1 }, $push: { cheemTakers: message.author.id } }, { new: true, upsert: true });
+            await client.DBPost.findByIdAndUpdate(post._id, { $inc: { cheems: 1 }, $push: { cheemGivers: message.author.id } }, { new: true, upsert: true });
           }
           await client.DBUser.findByIdAndUpdate(post.author, { $inc: { cheems: 1 } }, { new: true, upsert: true });
           message.reply('Cheems Given! 😊')
@@ -41,7 +41,7 @@ module.exports = {
         else if (reply.content.toLowerCase() == '!down') {
           if(post.cheemTakers.includes(message.author.id)) return message.reply('You have already taken Cheems to this post');
           if(post.cheemGivers.includes(message.author.id)) { 
-            await client.DBPost.findByIdAndUpdate(post._id, { $pull: { cheemGivers: message.author.id }, $inc: { cheems: -1 }  }, { new: true, upsert: true}) 
+            await client.DBPost.findByIdAndUpdate(post._id, { $pull: { cheemGivers: message.author.id }, $inc: { cheems: -1 }, $push: { cheemTakers: message.author.id }  }, { new: true, upsert: true}) 
           }
           else {
             await client.DBPost.findByIdAndUpdate(post._id, { $inc: { cheems: -1 }, $push: { cheemTakers: message.author.id } }, { new: true, upsert: true })
