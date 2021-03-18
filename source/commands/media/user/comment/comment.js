@@ -1,14 +1,14 @@
 const PREFIX = require('../../../../../config/botconfig.json').PREFIX;
 const { getReply } = require('../../../../utils/utils')
+const { MessageEmbed } = require('discord.js')
 // Change DIR if needed
 
 module.exports = {
     name: "comment",
-    aliases: [],
-    description: "",
+    aliases: ['com'],
+    description: "Make a comment to given post",
     usage: `\`${PREFIX}comment [post-id]\``,
-    examples: `\`${PREFIX}\``,
-    perms: [],
+    examples: `\`${PREFIX}comment 822214720613384244\``,
     cooldown: 5,
 
     execute: async function(client, message, args) {
@@ -31,6 +31,14 @@ module.exports = {
         text: text.content
       }).save()
 
+      const comEmbed = new MessageEmbed()
+      .setAuthor(message.author.username, message.author.avatarURL())
+      .setTitle(`New comment for ${postId}`)
+      .setDescription(text.content)
+      .setFooter(`Author <@${message.author.id}>`)
+      .setColor("RANDOM")
+
+      client.users.cache.get(DBPost.author).send(comEmbed)
       message.reply('You made a comment, good job cheems!')
     }
 }

@@ -4,11 +4,9 @@ const {MessageEmbed} = require('discord.js')
 
 module.exports = {
     name: "showall",
-    aliases: [],
-    description: "",
+    description: "Shows the all comments for post",
     usage: `\`${PREFIX}showall [post-id]\``,
-    examples: `\`${PREFIX}\``,
-    perms: [],
+    examples: `\`${PREFIX}showall 822214720613384244\``,
     cooldown: 5,
 
     execute: async function(client, message, args) {
