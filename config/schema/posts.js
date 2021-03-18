@@ -6,8 +6,7 @@ const postSchema = Schema({
     title: String,
     description: String,
     image: String,
-    upvotes: Number,
-    downvotes: Number,
+    cheems: Number,
     checked: {
         type: Boolean,
         default: false
