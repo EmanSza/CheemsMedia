@@ -25,12 +25,13 @@ module.exports = {
         if(!DBPost) return message.reply('I Could not find a post!')
         if(DBPost.checked && !message.channel.nsfw) return message.reply("This is a NSFW post, you can't see NSFW posts at SFW channels")
 
-
+        var cheems = 0
+        if(DBPost.cheems != null || DBPost.cheems != undefined) cheems = DBPost.cheems
         const embed = new MessageEmbed()
         .setColor('RANDOM')
         .setTitle(DBPost.title)
         .setDescription(DBPost.description)
-        .setFooter(`Post author: ${DBPost.author} Post id: ${DBPost._id}`);
+        .setFooter(`Post author: ${DBPost.author} | Post id: ${DBPost._id} | Cheems: ${cheems}`);
 
         if (DBPost.image.toLowerCase() !== 'none') embed.setImage(DBPost.image);
 

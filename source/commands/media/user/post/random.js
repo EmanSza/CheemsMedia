@@ -16,11 +16,13 @@ module.exports = {
 
         // return console.log(post)
 
+        var cheems = 0
+        if(post.cheems != null || post.cheems != undefined) cheems = post.cheems
         const embed = new MessageEmbed()
         .setColor('RANDOM')
         .setTitle(post.title)
         .setDescription(post.description)
-        .setFooter(`Post author: ${post.author} Post id: ${post._id}`);
+        .setFooter(`Post author: ${DBPost.author} | Post id: ${DBPost._id} | Cheems: ${cheems}`);
 
         if (post.image.toLowerCase() !== 'none') embed.setImage(post.image);
         message.channel.send(embed)
