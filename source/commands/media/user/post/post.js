@@ -10,7 +10,7 @@ module.exports = {
     usage: `\`${PREFIX}post\``,
     cooldown: 20,
 
-    execute: async function(client, message, args) {
+    execute: async function(client, message) {
         let DBUser = await client.DBUser.findById(message.author.id);
         if (!DBUser) return message.reply('You must signup using the signup command!');
 

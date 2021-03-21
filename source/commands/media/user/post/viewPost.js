@@ -30,7 +30,7 @@ module.exports = {
         .setColor('RANDOM')
         .setTitle(DBPost.title)
         .setDescription(DBPost.description)
-        .setFooter(DBPost.author);
+        .setFooter(`Post author: ${DBpost.author} Post id: ${DBpost._id}`);
 
         if (DBPost.image.toLowerCase() !== 'none') embed.setImage(DBPost.image);
 

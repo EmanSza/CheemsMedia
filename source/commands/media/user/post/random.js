@@ -15,13 +15,12 @@ module.exports = {
         if(post.checked != true) await client.DBPost.find({});
 
         // return console.log(post)
-        const user = await client.users.fetch(post.author);
 
         const embed = new MessageEmbed()
         .setColor('RANDOM')
         .setTitle(post.title)
         .setDescription(post.description)
-        .setFooter(user.tag + ` Post id: ${post._id}`, user.displayAvatarURL({ dynamic: true }));
+        .setFooter(`Post author: ${post.author} Post id: ${post._id}`);
 
         if (post.image.toLowerCase() !== 'none') embed.setImage(post.image);
         message.channel.send(embed)
