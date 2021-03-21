@@ -22,7 +22,7 @@ module.exports = {
         .setColor('RANDOM')
         .setTitle(post.title)
         .setDescription(post.description)
-        .setFooter(`Post author: ${DBPost.author} | Post id: ${DBPost._id} | Cheems: ${cheems}`);
+        .setFooter(`Post author: ${post.author} | Post id: ${post._id} | Cheems: ${cheems}`);
 
         if (post.image.toLowerCase() !== 'none') embed.setImage(post.image);
         message.channel.send(embed)
