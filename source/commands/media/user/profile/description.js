@@ -3,20 +3,19 @@ const PREFIX = require('../../../../../config/botconfig.json').PREFIX;
 
 module.exports = {
     name: "setbio",
-    aliases: [],
-    description: "",
-    usage: `\`${PREFIX}\``,
-    examples: `\`${PREFIX}\``,
-    perms: [],
+    description: "Changes your profile bio",
+    usage: `\`${PREFIX}setbio [your-bio-text]\``,
+    examples: `\`${PREFIX}\`setbio I am a high school student`,
     cooldown: 20,
 
     execute: async function(client, message, args) {
         let DBUser = await client.DBUser.findById(message.author.id);
         if (!DBUser) return message.reply('You must signup using the signup command!')
-    
-        let description = args.splice(0).join(' ');
-        if (message.content.length > 100) return message.reply('Your profile cannot go above 100')
-        if (!description) return message.reply('Please give me a bio!!');
+        
+        if(!args[0]) return message.reply('Please give me a bio!!');
+        let description = args.join(' ');
+        if (description.length > 100) return message.reply('Your bio cannot go above 100')
+
         try {
             await client.DBUser.findByIdAndUpdate(message.author.id, { $set: { bio: description } }, { new: true, upsert: true });
             message.reply(`Your Profile Bio is now ${description}`)
