@@ -38,6 +38,7 @@ module.exports = {
       )
       .setColor(DBUser.color)
       .setThumbnail(user.displayAvatarURL())
+      .setFooter(`User ID: ${DBUser._id}`)
     try {
       message.channel.send(profile)
     } catch (err) {
