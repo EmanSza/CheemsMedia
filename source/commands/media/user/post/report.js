@@ -30,7 +30,7 @@ module.exports = {
         var admin = await client.DBStaff.find({job: 'admin'})
         admin = admin.random()
 
-        var channel = client.channels.cache.get('811596791597236264')
+        var channel = client.channels.cache.get('829467888951623701')
         channel.send(`<@${admin._id}>`)
         channel.send(embed)
     }
