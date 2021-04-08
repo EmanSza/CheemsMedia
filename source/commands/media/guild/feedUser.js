@@ -3,8 +3,8 @@ const PREFIX = require('../../../../config/botconfig.json').PREFIX;
 module.exports = {
     name: "feeduser",
     aliases: ["fu", "feedu"],
-    description: "Set a user when they post a there's a notification on channel",
-    usage: `\`${PREFIX}follow\``,
+    description: "Sends new post from given user and sends it to feedchannel",
+    usage: `\`${PREFIX}feeduser [user-id]\``,
     perms: ['MANAGE_CHANNELS'],
     cooldown: 10,
 

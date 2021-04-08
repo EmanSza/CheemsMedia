@@ -4,11 +4,9 @@ const { getReply } = require('../../../../utils/utils')
 
 module.exports = {
     name: "upvote",
-    aliases: [],
-    description: "",
+    description: "you can upvote the post",
     usage: `\`${PREFIX}upvote [post-id]\``,
     examples: `\`${PREFIX}upvote 822220305644388362\``,
-    perms: [],
     cooldown: 5,
 
     execute: async function(client, message, args) {

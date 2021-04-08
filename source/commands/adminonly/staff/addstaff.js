@@ -1,12 +1,13 @@
-// inside the async execute
+const { PREFIX } = require('../../../../config/botconfig.json');
 
 module.exports = {
     name: "addstaff",
-    description: "",
-    usage: "",
-    examples: "",
+    description: "Adds user to stafflist",
+    usage: `\`${PREFIX}addstaff [mention-user] [job]\``,
+    examples: `\`${PREFIX}addstaff @Babu developer\``,
     cooldown: 0,
     someServersOnly: true,
+    adminOnly: true,
 
     execute: async function(client, message, args) {
       if(message.author.id != '519861424017768451') return message.reply(`Only <@519861424017768451> can add staff`)

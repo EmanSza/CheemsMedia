@@ -1,7 +1,7 @@
 const { processArguments } = require("../utils/utils")
 const { Collection } = require("discord.js")
 const cooldowns = new Collection();
-const { PREFIX, BOTADMINS, Developers, someServers} = require('../../config/botconfig.json')
+const { PREFIX, someServers} = require('../../config/botconfig.json')
 
 module.exports = async (client, message) => {
     if (message.author.bot || message.channel.type === 'dm' || client.blacklistCache.has(message.author.id)) return;

@@ -1,21 +1,19 @@
 const Discord = require("discord.js");
 const chalk = require('chalk');
-const { PREFIX, BOTADMINS} = require('../../../../config/botconfig.json');
-const { blacklist, whitelist } = require('../../../utils/utils')
+const { PREFIX } = require('../../../../config/botconfig.json');
+const { whitelist } = require('../../../utils/utils')
 // inside the async execute
 
 module.exports = {
     name: "whitelist",
-    description: "",
-    usage: "",
-    examples: "",
+    description: "Removes the blacklist of an user",
+    usage: `\`${PREFIX}whitelist [mention-user]\``,
+    examples: `\`${PREFIX}whitelist @Babu\``,
     cooldown: 0,
-    canNotDisable: false,
-    devOnly: false,
     adminOnly: true,
     someServersOnly: false,
     
-    execute: async function(client, message, args) {
+    execute: async function(client, message) {
 
          const user = message.mentions.users.first()
          if(!user) return message.reply('You didn\'t mention anyone!');

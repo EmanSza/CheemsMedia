@@ -3,11 +3,9 @@ const PREFIX = require('../../../../../config/botconfig.json').PREFIX;
 
 module.exports = {
     name: "unblock",
-    aliases: [],
-    description: "",
-    usage: `\`${PREFIX}\``,
-    examples: `\`${PREFIX}\``,
-    perms: [],
+    description: "unblock the user with given id",
+    usage: `\`${PREFIX}unblock [mention-user / user-id]\``,
+    examples: `\`${PREFIX}unblock 516280867346448384\``,
     cooldown: 10,
 
     execute: async function(client, message, args) {

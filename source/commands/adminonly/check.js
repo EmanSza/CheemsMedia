@@ -1,13 +1,11 @@
-const { PREFIX, BOTADMINS} = require('../../../config/botconfig.json').PREFIX;
+const { PREFIX } = require('../../../config/botconfig.json').PREFIX;
 // Change DIR if needed
 
 module.exports = {
     name: "check",
-    aliases: [],
     description: "Sets the post as NSFW",
-    usage: `\`${PREFIX}\` [post-ID]`,
-    examples: `\`${PREFIX}\` 823610619131461643`,
-    devOnly: false,
+    usage: `\`${PREFIX}check [post-ID]\``,
+    examples: `\`${PREFIX}check 823610619131461643\``,
     adminOnly: true,
     someServersOnly: true,
 

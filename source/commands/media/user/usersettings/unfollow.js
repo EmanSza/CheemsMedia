@@ -1,11 +1,10 @@
 const PREFIX = require('../../../../../config/botconfig.json').PREFIX;
-const { getReply } = require('../../../../utils/utils')
 // Change DIR if needed
 
 module.exports = {
     name: "unfollow",
     description: "unfollow Someone",
-    usage: `\`${PREFIX}follow\``,
+    usage: `\`${PREFIX}unfollow [mention-user / user-id]\``,
     cooldown: 10,
 
     execute: async function (client, message, args) {

@@ -3,11 +3,8 @@ const { PREFIX } = require('../../../config/botconfig.json');
 
 module.exports = {
     name: "ping",
-    aliases: [],
-    description: "",
-    usage: `\`See how fast the bot is\``,
-    examples: `\`${PREFIX}ping\``,
-    perms: [],
+    description: "See how fast the bot is",
+    usage: `\`${PREFIX}ping\``,
     cooldown: 5,
     disabled: false,
 

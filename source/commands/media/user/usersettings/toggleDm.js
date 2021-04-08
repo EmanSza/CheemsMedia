@@ -4,13 +4,11 @@ const PREFIX = require('../../../../../config/botconfig.json').PREFIX;
 module.exports = {
     name: "toggledms",
     aliases: ["dmoff", "dmon", "toggledm"],
-    description: "",
-    usage: `\`${PREFIX}\``,
-    examples: `\`${PREFIX}\``,
-    perms: [],
+    description: "close/open your dms",
+    usage: `\`${PREFIX}toggledms\``,
     cooldown: 10,
 
-    execute: async function(client, message, args) {
+    execute: async function(client, message) {
         let author = message.author
         let DBUser = await client.DBUser.findById(author.id);
         if (!DBUser) return message.reply('You must signup using the signup command!');

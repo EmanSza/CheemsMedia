@@ -4,10 +4,8 @@ const PREFIX = require('../../../../../config/botconfig.json').PREFIX;
 module.exports = {
     name: "directmessage",
     aliases: ["message", "dm"],
-    description: "",
-    usage: `\`${PREFIX}\``,
-    examples: `\`${PREFIX}\``,
-    perms: [],
+    usage: `\`${PREFIX}directmessage [mention-user / user-id]\``,
+    examples: `\`${PREFIX}directmessage 455831445949120535 Hı its babu\``,
     cooldown: 7,
 
     execute: async function(client, message, args) {

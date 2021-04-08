@@ -1,16 +1,17 @@
-// inside the async execute
+const { PREFIX } = require('../../../../config/botconfig.json');
 
 module.exports = {
     name: "removestaff",
-    description: "",
-    usage: "",
-    examples: "",
+    description: "Removes staff from stafflist",
+    usage: `\`${PREFIX}removestaff [mention-user]\``,
+    examples: `\`${PREFIX}removestaff @Babu\``,
     cooldown: 0,
-    //someServersOnly: false,
+    someServersOnly: true,
+    adminOnly: true,
 
     execute: async function(client, message, args) {
       try {
-                if(message.author.id != '519861424017768451') return message.reply(`Only <@519861424017768451> can remove staff`)
+          if(message.author.id != '519861424017768451') return message.reply(`Only <@519861424017768451> can remove staff`)
           if(!message.mentions.users.first()) return message.reply('You need to mention user to remove')
           await client.DBStaff.findByIdAndDelete({ _id: message.mentions.users.first().id });
             message.reply(`Staff <@${message.mentions.users.first().id}> has been removed!`)

@@ -10,11 +10,8 @@ module.exports = {
     cooldown: 5,
 
     execute: async function(client, message) {
-        let posts = await client.DBPost.find({});
-        let post = nsfwPost(message.channel, posts)
-        if(post.checked != true) await client.DBPost.find({});
-
-        // return console.log(post)
+        let posts = await client.DBPost.find({checked: message.channel.nsfw});
+        let post = posts.random()
 
         var cheems = 0
         if(post.cheems != null || post.cheems != undefined) cheems = post.cheems
@@ -51,17 +48,4 @@ module.exports = {
           message.reply('Cheems Taken! 😢')
         }
     }
-}
-
-function nsfwPost(channel, posts){
-  let post = posts.random()
-  if(post.checked){
-    if(channel.nsfw){
-      return post
-    }
-    else if(!channel.nsfw){
-      post = nsfwPost(channel, posts)
-    }
-  }
-  return post
 }

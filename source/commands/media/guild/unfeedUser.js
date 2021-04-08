@@ -4,7 +4,7 @@ module.exports = {
     name: "unfeeduser",
     aliases: ["unfu", "unfeedu"],
     description: "Set a user when they post a there's a notification on channel",
-    usage: `\`${PREFIX}follow\``,
+    usage: `\`${PREFIX}unfeeduser [mention-user / user-id]\``,
     perms: ['MANAGE_CHANNELS'],
     cooldown: 10,
 

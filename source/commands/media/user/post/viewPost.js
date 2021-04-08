@@ -6,10 +6,9 @@ const { MessageEmbed } = require('discord.js');
 module.exports = {
     name: "viewpost",
     aliases: ["vp", "viewp"],
-    description: "",
-    usage: `\`${PREFIX}\``,
-    examples: `\`${PREFIX}\``,
-    perms: [],
+    description: "shows the post with given id",
+    usage: `\`${PREFIX}viewpost [post-id]\``,
+    examples: `\`${PREFIX}viewpost 821782566260178984\``,
     cooldown: 5,
 
     execute: async function(client, message, args) {

@@ -4,11 +4,8 @@ const moment = require('moment')
 
 module.exports = {
     name: "signup",
-    aliases: [],
     description: "Make a Account for Cheems Media",
-    usage: `\`${PREFIX}\``,
-    examples: `\`${PREFIX}\``,
-    perms: [],
+    usage: `\`${PREFIX}signup\``,
     cooldown: 5,
 
     execute: async function (client, message, args) {

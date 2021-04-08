@@ -6,7 +6,7 @@ const isNsfw = require('../../../../utils/nsfw')
 
 module.exports = {
     name: "post",
-    description: "",
+    description: "creates new post ",
     usage: `\`${PREFIX}post\``,
     cooldown: 20,
 

@@ -4,11 +4,8 @@ const { MessageEmbed } = require('discord.js')
 
 module.exports = {
     name: "info",
-    aliases: [],
-    description: "",
-    usage: `\`See how fast the bot is\``,
-    examples: `\`${PREFIX}ping\``,
-    perms: [],
+    description: "gives info about bot",
+    usage: `\`${PREFIX}info\``,
     cooldown: 5,
 
     execute: async function(client, message, args) {

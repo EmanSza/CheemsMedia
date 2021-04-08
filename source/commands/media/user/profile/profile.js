@@ -5,10 +5,7 @@ const { MessageEmbed } = require('discord.js')
 module.exports = {
   name: "profile",
   aliases: ["profil"],
-  description: "",
-  usage: `\`See your profile\``,
-  examples: `\`${PREFIX}profile\``,
-  perms: [],
+  usage: `\`${PREFIX}profile\``,
   cooldown: 20,
 
   execute: async function (client, message, args) {

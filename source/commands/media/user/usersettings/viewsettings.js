@@ -5,12 +5,9 @@ const { MessageEmbed } = require('discord.js')
 module.exports = {
   name: "viewsettings",
   aliases: ["vs"],
-  description: "",
-  usage: `\`See your profile\``,
-  examples: `\`${PREFIX}profile\``,
-  perms: [],
+  description: "See your profile",
+  usage: `\`${PREFIX}viewsettings\``,
   cooldown: 10,
-  disabled: false,
 
   execute: async function (client, message, args) {
     let DBAuthor = await client.DBUser.findById(message.author.id);

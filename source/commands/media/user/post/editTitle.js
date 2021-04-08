@@ -4,11 +4,9 @@ const { getReply } = require('../../../../utils/utils')
 
 module.exports = {
     name: "edittitle",
-    aliases: [],
-    description: "",
-    usage: `\`${PREFIX}\``,
-    examples: `\`${PREFIX}\``,
-    perms: [],
+    description: "edit the title of given post",
+    usage: `\`${PREFIX}edittitle [post-id]\``,
+    examples: `\`${PREFIX}edittitle 821782566260178984\``,
     cooldown: 20,
 
     execute: async function(client, message, args) {
@@ -34,7 +32,7 @@ module.exports = {
             await client.DBPost.findByIdAndUpdate(postID.content, { $set: { title: title.content } }, { new: true, upsert: true });
             message.reply(`POST ${postID.content} Description is now set to\n ${title.content}`)
           } catch(err) {
-
+            console.log(err)
           }
     }
 }

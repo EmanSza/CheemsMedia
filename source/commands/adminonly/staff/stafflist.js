@@ -1,14 +1,13 @@
 const Discord = require("discord.js");
+const { PREFIX } = require('../../../../config/botconfig.json');
 // inside the async execute
 
 module.exports = {
     name: "stafflist",
-    description: "",
-    usage: "",
-    examples: "",
+    description: "Shows stafflist",
+    usage: `\`${PREFIX}stafflist\``,
+    examples: `\`${PREFIX}stafflist\``,
     cooldown: 0,
-    someServersOnly: true,
-
     execute: async function(client, message, args) {
       var staff = client.stafflist
       var devs = []

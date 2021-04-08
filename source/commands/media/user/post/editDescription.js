@@ -4,11 +4,9 @@ const { getReply, DMfeed, ChannelFeed } = require('../../../../utils/utils')
 
 module.exports = {
     name: "editdescription",
-    aliases: [],
-    description: "",
-    usage: `\`${PREFIX}\``,
-    examples: `\`${PREFIX}\``,
-    perms: [],
+    description: "you can change the description of post",
+    usage: `\`${PREFIX}editdescription\``,
+    examples: `\`${PREFIX}editdescription\``,
     cooldown: 20,
 
     execute: async function(client, message, args) {

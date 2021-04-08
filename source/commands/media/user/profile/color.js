@@ -3,18 +3,16 @@ const PREFIX = require('../../../../../config/botconfig.json').PREFIX;
 
 module.exports = {
   name: "setcolor",
-  aliases: ["setcolour"],
-  description: "",
-  usage: `\`${PREFIX}\``,
-  examples: `\`${PREFIX}\``,
-  perms: [],
+  description: "changes the color of your profile",
+  usage: `\`${PREFIX}setcolor [hex-color]\``,
+  examples: `\`${PREFIX}setcolor #00CD00\``,
   cooldown: 20,
 
   execute: async function (client, message, args) {
     let DBUser = await client.DBUser.findById(message.author.id);
     if (!DBUser) return message.reply('You must signup using the signup command!')
 
-    let color = args.splice(0).join(' ');
+    let color = args.join(' ');
     if (!color) return message.reply('Give me a color!!');
     //  if(color !== /^#([0-9A-F]{3}){1,2}$/i) return message.reply('Give me a Hex!') */ 
     if (/^#(?:[0-9a-fA-F]{3}){1,2}$/g.test(color)) {

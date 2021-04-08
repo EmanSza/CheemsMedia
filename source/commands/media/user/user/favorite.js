@@ -3,12 +3,9 @@ const PREFIX = require('../../../../../config/botconfig.json').PREFIX;
 
 module.exports = {
     name: "favorite",
-    aliases: [],
-    description: "",
-    usage: `\`${PREFIX}\``,
-    examples: `\`${PREFIX}\``,
-    perms: [],
-    devOnly: true,
+    description: "adds post with the given id to your favs",
+    usage: `\`${PREFIX}favorite [post-id]\``,
+    examples: `\`${PREFIX}favorite 387189529548816384\``,
     cooldown: 10,
 
     execute: async function(client, message, args) {
@@ -27,7 +24,5 @@ module.exports = {
         }catch(err){
 
         }
-
-        
     }
 }

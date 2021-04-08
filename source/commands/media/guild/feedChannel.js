@@ -3,8 +3,8 @@ const PREFIX = require('../../../../config/botconfig.json').PREFIX;
 module.exports = {
     name: "feedchannel",
     aliases: ["fc", "feedc"],
-    description: "Set a follow channel",
-    usage: `\`${PREFIX}follow\``,
+    description: "Set a feed channel",
+    usage: `\`${PREFIX}feedchannel [mention-channel / channel-id]\``,
     perms: ['MANAGE_CHANNELS'],
     cooldown: 10,
 

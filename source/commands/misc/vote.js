@@ -4,15 +4,10 @@ const axios = require('axios')
 
 module.exports = {
     name: "vote",
-    aliases: [],
     description: "",
     usage: `\`${PREFIX}\``,
     examples: `\`${PREFIX}\``,
-    perms: [],
     cooldown: 5,
-    devOnly: false,
-    adminOnly: false,
-    someServers: false,
     disabled: true,
 
     execute: async function (client, message, args) {

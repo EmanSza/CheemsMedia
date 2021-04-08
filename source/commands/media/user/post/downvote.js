@@ -4,11 +4,9 @@ const { getReply } = require('../../../../utils/utils')
 
 module.exports = {
     name: "downvote",
-    aliases: [],
-    description: "",
-    usage: `\`${PREFIX}\``,
-    examples: `\`${PREFIX}\``,
-    perms: [],
+    description: "you can downvote the post",
+    usage: `\`${PREFIX}downvote [post-id]\``,
+    examples: `\`${PREFIX}downvote 821782566260178984\``,
     cooldown: 10,
 
     execute: async function(client, message, args) {

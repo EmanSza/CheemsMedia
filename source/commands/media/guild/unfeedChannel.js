@@ -3,8 +3,8 @@ const PREFIX = require('../../../../config/botconfig.json').PREFIX;
 module.exports = {
     name: "unfeedchannel",
     aliases: ["unfc", "unfeedc"],
-    description: "Set a follow channel",
-    usage: `\`${PREFIX}follow\``,
+    description: "Disabels the feedchannel",
+    usage: `\`${PREFIX}unfeedchannel [mention-channel / channel-id]\``,
     perms: ['MANAGE_CHANNELS'],
     cooldown: 10,
 

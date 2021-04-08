@@ -3,15 +3,11 @@ const { PREFIX, BOTADMINS} = require('../../../config/botconfig.json').PREFIX;
 
 module.exports = {
     name: "verify",
-    aliases: [],
-    description: "",
-    usage: `\`${PREFIX}\``,
-    examples: `\`${PREFIX}\``,
-    perms: [],
+    description: "verify mentioned user",
+    usage: `\`${PREFIX}verify [mention-user / user-id]\``,
+    examples: `\`${PREFIX}verify @Babu\``,
     cooldown: 0,
-    devOnly: false,
     adminOnly: true,
-    someServersOnly: false,
 
     execute: async function(client, message, args) {
 

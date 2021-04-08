@@ -6,10 +6,9 @@ const { MessageEmbed } = require('discord.js');
 module.exports = {
     name: "deletepost",
     aliases: ["dp", "deletep"],
-    description: "",
-    usage: `\`${PREFIX}\``,
-    examples: `\`${PREFIX}\``,
-    perms: [],
+    description: "Delete the post of yours",
+    usage: `\`${PREFIX}deletepost [post-id]\``,
+    examples: `\`${PREFIX}deletepost 821782566260178984\``,
     cooldown: 20,
 
     execute: async function(client, message, args) {
