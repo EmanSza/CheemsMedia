@@ -12,7 +12,7 @@ module.exports = {
         const embed = new MessageEmbed()
         .setTitle('Bot Information')
         .addFields(
-            { name: "**Board Members**", value: "`EmanSza` Founder and Developer\n`Canta` Founder and Developer\n`Spik` Developer and Owner\n`KrabbyBuckets` Website Developer and Owner\n", inline: true },
+            { name: "**Board Members**", value: "`EmanSza` Founder/Developer\n`Canta` Founder/Developer\n`Spik` Developer/Owner\n`KrabbyBuckets` Website Developer/Owner\n", inline: true },
             { name: "**Developers**", value: "`Depression` Bot Developer\n", inline: true },
             { name: "**Links**", value: "`website` https://cheemsmedia.xyz\n`Discord` https://join.cheemsmedia.xyz\n`invite` https://invite.cheemsmedia.xyz\n", inline: true },
             { name: "**Langauges**", value: "English", inline: true },
