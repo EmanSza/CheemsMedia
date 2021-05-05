@@ -1,8 +1,0 @@
-{
-    "TOKEN": "ODA3NzA2NTgzMTczMDM4MDgw.YB75Xw.44TlBQ5NN_dqD8S-otLE-AAXUV4",
-    "PREFIX": "!",
-    "MONGOURI": "mongodb+srv://CheemsMedia:3ZKWCHr0vL71n02e@cheemsmedia.r47zc.mongodb.net/CheemsMedia?retryWrites=true&w=majority",
-    "NSFWKEY": "19d6f18a-dd0a-4d2a-912f-c4b2a28ba75b",
-    "TOPGGTOKEN": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgwNzcwNjU4MzE3MzAzODA4MCIsImJvdCI6dHJ1ZSwiaWF0IjoxNjE1Mzg2MjExfQ.kr1pBuF92C4wdlCThtnEHOplEOqnR7_MG81zXEBN-Tk",
-    "someServers": ["807705749798649907"]
-}
