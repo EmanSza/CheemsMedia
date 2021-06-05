@@ -13,6 +13,7 @@ module.exports = {
     execute: async function(client, message) {
         let DBUser = await client.DBUser.findById(message.author.id);
         if (!DBUser) return message.reply('You must signup using the signup command!');
+        // TODO: Set value to false if not signed in
 
         message.channel.send(`${message.author.tag}, what should be the title of the post? **You can type \`cancel\` any time to stop it**`);
         let title = await getReply(message, { time: 60000 });
