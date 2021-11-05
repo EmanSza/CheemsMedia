@@ -20,7 +20,9 @@ client.on('ready', () => {
 
 // Async Function
 (async () => {
+    // Set a blacklist lis to a JS Collection
     client.blacklistCache = new Set()
+    // Pass client to function to send data to TOPGG
     InitateTopGG(client)
     await client.login(TOKEN).then(console.log(chalk.red(`<CLIENT>`) + (' ') + chalk.blue('Starting up...')));
     client.commands = new Discord.Collection();
@@ -38,12 +40,12 @@ client.on('ready', () => {
     client.DBPost = require('../config/schema/posts.js');
     client.DBGuild = require('../config/schema/guild.js');
     client.DBStaff = require('../config/schema/staff.js');
-    client.DBComments = require('../config/schema/comments.js')
+    client.DBComments = require('../config/schema/comments.js');
     //Blacklist
-    const blacklistFetch = await client.DBConfig.findByIdAndUpdate('blacklist', {}, {new: true, upsert: true, setDefaultsOnInsert: true})
-    client.blacklistCache = new Set(blacklistFetch.blacklisted)
-    const stafflist = await client.DBStaff.find({})
-    if (stafflist) client.stafflist = stafflist
+    const blacklistFetch = await client.DBConfig.findByIdAndUpdate('blacklist', {}, {new: true, upsert: true, setDefaultsOnInsert: true});
+    client.blacklistCache = new Set(blacklistFetch.blacklisted);
+    const stafflist = await client.DBStaff.find({});
+    if (stafflist) client.stafflist = stafflist;
     var admins = []
     var devs = []
     client.stafflist.forEach(function (s) {
