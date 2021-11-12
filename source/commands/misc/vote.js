@@ -11,6 +11,7 @@ module.exports = {
     disabled: true,
 
     execute: async function (client, message, args) {
+        // Talk to Worn off Keys API to recieve and send votes
         const channel = '812529308811132989'
         const user = message.author
         const teamId = 'cheems media'
