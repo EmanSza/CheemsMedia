@@ -1,30 +1,28 @@
 {
-  "name": "loners",
-  "version": "1.0.0",
-  "description": "EmanSza | Spike | Canta",
-  "main": "./source/index.js",
+  "name": "cheemsmedia",
+  "version": "2.0.0",
+  "description": "Social Media Bot For Discord",
+  "main": "/src/index.js",
   "scripts": {
-    "start": "node ./source/index.js",
-    "dev": "nodemon ./source/index.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/WornOffKeys/Cheems-Media"
+    "url": "git+https://github.com/EmanSza/CheemsMedia.git"
   },
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "social-media",
+    "discord"
+  ],
+  "author": "EmanSza",
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/WornOffKeys/Cheems-Mediaissues"
+    "url": "https://github.com/EmanSza/CheemsMedia/issues"
   },
-  "homepage": "https://github.com/WornOffKeys/Cheems-Media#readme",
+  "homepage": "https://github.com/EmanSza/CheemsMedia#readme",
   "dependencies": {
-    "@top-gg/sdk": "^3.0.9",
-    "axios": "^0.21.2",
-    "chalk": "^4.1.0",
-    "deepai": "^1.0.17",
-    "discord.js": "^12.5.1",
-    "moment": "^2.29.1",
-    "mongoose": "^5.11.15",
-    "topgg-autoposter": "^1.1.7"
+    "discord.js": "^13.6.0",
+    "dotenv": "^16.0.0",
+    "mongoose": "^6.2.9"
   }
 }
