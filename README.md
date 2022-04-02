@@ -1,6 +1,7 @@
 ## Cheems Media
 
-# OUTDATED v1 is Outdated. Please use v2. The only updates v1 will have is updates regarding its packages. if the bot is broken it will not be fixed unless a Pull Request fixing it is made
+# OUTDATED
+v1 is Outdated. Please use v2. The only updates v1 will have is updates regarding its packages. if the bot is broken it will not be fixed unless a Pull Request fixing it is made
 
 This is the Social Media bot called Cheems Media inspired by a Reddit/Instagram type we wanted to create a new social media platform for those whom want to try it out
 
