@@ -1,5 +1,7 @@
 ## Cheems Media
 
+#OUTDTATED v1 is Outdated. Please use v2. The only updates v1 will have is updates regarding its packages. if the bot is broken it will not be fixed unless a Pull Request fixing it is made
+
 This is the Social Media bot called Cheems Media inspired by a Reddit/Instagram type we wanted to create a new social media platform for those whom want to try it out
 
 This Bot will be open sourced under the MIT License. Use this as you please but please do not put the bot on top.gg without EmanSza's permission
