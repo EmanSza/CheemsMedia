@@ -83,6 +83,10 @@ export default class Handlers {
         }
         // If the Command is owner only and the user is not the owner
         if(command.ownerOnly && user.id !== process.env.OWNER_ID) return interaction.reply({content: 'You do not have permission to use this command'});
+        // Checks to see if registeredOnly is called
+        command.registeredOnly ?? false;
+       // See if from the user schema if registered is true
+       if(command.registeredOnly && !this.client.userSchema.findOne({_id: user.id}).registered) return interaction.reply({content: 'You must register to use this command'});
         try {
             // Attempt to execute the command
             await command.execute( interaction, this.client, optionArray, user);
@@ -104,7 +108,7 @@ export default class Handlers {
                 this.loadEventFiles(path.join(event, file));
             }
             // If the file does not end with .ts or .js, ignore it
-            if (!file.endsWith('.ts') && !file.endsWith('.js')) return;
+            if (!file.endsWith('.js')) return;
             // now we find the file
             let fileName = path.join(event, file);
             // now we load the file

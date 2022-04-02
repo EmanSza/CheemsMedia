@@ -1,6 +1,11 @@
 // --== Discord ==--
 const Discord = require('discord.js');
-const client = new Discord.Client();
+const client = new Discord.Client(
+    {
+        disableEveryone: true,
+        disabledEvents: ['TYPING_START']
+    },
+);
 
 // --== Database ==--
 const mongoose = require('mongoose');
@@ -14,13 +19,12 @@ const handlers = new handler(client);
 
 // Login to Discord & Connect to Database
 (async () => {
-    await client.login(process.env.TOKEN);
-    await mongoose.connect(process.env.DB_URL, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-        useFindAndModify: false
-    });
 
+    await client.login(process.env.TOKEN);
+    // Database Connection
+    const database = require('./database/database');
+    // Connect to the Database
+    await database.connect(mongoose);
     // Load Commands
     await handlers.loadCommandFiles('./src/commands');
     // Load the Events Files
