@@ -9,10 +9,10 @@ const mongoose = require('mongoose');
 require('dotenv').config();
 
 // --== Handler ==--
-// Require the handler
-
 const handler = require('./utils/handler');
 const handlers = new handler(client);
+
+// Login to Discord & Connect to Database
 (async () => {
     await client.login(process.env.TOKEN);
     await mongoose.connect(process.env.DB_URL, {
@@ -20,4 +20,9 @@ const handlers = new handler(client);
         useUnifiedTopology: true,
         useFindAndModify: false
     });
+
+    // Load Commands
+    await handlers.loadCommandFiles('./src/commands');
+    // Load the Events Files
+    await handlers.loadEventFiles('./src/events');
 })();

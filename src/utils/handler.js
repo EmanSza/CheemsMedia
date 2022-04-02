@@ -1,6 +1,5 @@
 import fs from 'fs';
 import path from 'path';
-import { Interaction } from 'discord.js';
 export default class Handlers {
     commands = [];
     events = [];
@@ -8,6 +7,7 @@ export default class Handlers {
         this.client = client;
         // Once Commands are Loaded we listen for them
         this.client.on('interactionCreate', async (interaction) => {
+            // Fire the Command
             this.fireCommand(interaction);
         })
 
@@ -39,7 +39,9 @@ export default class Handlers {
             
         // Now if the command is a test command create it in the guild
         for (let command of commands) {
+            // If the command is a test command
             if(testGuild && command.testCommand) {
+                // Create the command in the guild
                 testGuild.commands?.create({
                     name: command.name.toLowerCase(),
                     description: command.description,
@@ -47,6 +49,7 @@ export default class Handlers {
                 })
             }
             if(!command.testCommand) {
+                // Create the command in the guild
                 this.client.application.commands?.create({
                     name: command.name.toLowerCase(),
                     description: command.description,
@@ -57,13 +60,19 @@ export default class Handlers {
     }
     async fireCommand(interaction) {
         if(!interaction.isCommand) return;
+        // Get the Interaction information
         const { commandName, options, user } = interaction;
+        // Get the Command
         const command = this.commands.find(command => command.name === commandName);
+        // If the command does not exist, return
         if(!command) return;
+        // If the command is a test command
         let optionArray = [];
-    
+        // If the command has options
         if(command.options) {
+            // Loop through the options
             for(let option of options._hoistedOptions) {
+                // Push the option into the array
                 optionArray.push({
                     name: option.name,
                     type: option.type,
@@ -72,21 +81,26 @@ export default class Handlers {
                 })
             }
         }
+        // If the Command is owner only and the user is not the owner
         if(command.ownerOnly && user.id !== process.env.OWNER_ID) return interaction.reply({content: 'You do not have permission to use this command'});
         try {
+            // Attempt to execute the command
             await command.execute( interaction, this.client, optionArray, user);
         } catch (error) {
+            // If there is an error, log it
             console.error(error);
+            // Send the error to the user
             interaction.reply('There was an error executing the command ' + commandName + '\n' + error);
         }
     }
     async loadEventFiles(event) {
-        
+        // Get the file path
         let filePath = fs.readdirSync(path.join(event));
-
+        // Loop through the files
         for (let file of filePath) {
             // Checks to See if there are any Sub Directories and loads them if there are
             if (fs.lstatSync(path.join(event, file)).isDirectory()) {
+                // Load the Event Files in the Sub Directory
                 this.loadEventFiles(path.join(event, file));
             }
             // If the file does not end with .ts or .js, ignore it
@@ -97,6 +111,7 @@ export default class Handlers {
             let eventFile = require(path.resolve(fileName));
             // Bind eventFile to the exeucute and pass thru args
             this.client.on(eventFile.name, (...args) => {
+                // Execute the event with the args
                 eventFile.execute(...args);
             })
         }
